@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/PianoFreeze C7.wav-e30b5f6b8f0a0a7414b4d614a6b11415.sample"
+
+[deps]
+
+source_file="res://Audio/PianoFreeze/PianoFreeze C7.wav"
+dest_files=[ "res://.import/PianoFreeze C7.wav-e30b5f6b8f0a0a7414b4d614a6b11415.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=true
+edit/loop=true
+compress/mode=0
