@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/SineWave Gb5.wav-743502d1631b75dbe721efeca440097c.sample"
+
+[deps]
+
+source_file="res://Audio/SineWaves/SineWave Gb5.wav"
+dest_files=[ "res://.import/SineWave Gb5.wav-743502d1631b75dbe721efeca440097c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=true
+edit/loop=true
+compress/mode=0
