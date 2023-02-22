@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/PianoFreeze G2.wav-f02889b39758ee85ff48d7a93609a830.sample"
+
+[deps]
+
+source_file="res://Audio/PianoFreeze/PianoFreeze G2.wav"
+dest_files=[ "res://.import/PianoFreeze G2.wav-f02889b39758ee85ff48d7a93609a830.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=true
+edit/loop=true
+compress/mode=0
