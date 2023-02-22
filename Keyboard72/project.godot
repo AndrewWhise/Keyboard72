@@ -1,0 +1,91 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Control",
+"class": "GrandStaff",
+"language": "GDScript",
+"path": "res://Scripts/GrandStaff.gd"
+}, {
+"base": "Reference",
+"class": "Interval",
+"language": "GDScript",
+"path": "res://Scripts/Interval.gd"
+}, {
+"base": "LineEdit",
+"class": "IntervalLineEdit",
+"language": "GDScript",
+"path": "res://Scripts/IntervalLineEdit.gd"
+}, {
+"base": "Resource",
+"class": "NoteGroup",
+"language": "GDScript",
+"path": "res://Scripts/NoteGroup.gd"
+}, {
+"base": "Reference",
+"class": "Pitch",
+"language": "GDScript",
+"path": "res://Scripts/Pitch.gd"
+}, {
+"base": "LineEdit",
+"class": "PitchLineEdit",
+"language": "GDScript",
+"path": "res://Scripts/PitchLineEdit.gd"
+}, {
+"base": "Resource",
+"class": "PitchSet",
+"language": "GDScript",
+"path": "res://Scripts/PitchSet.gd"
+} ]
+_global_script_class_icons={
+"GrandStaff": "",
+"Interval": "",
+"IntervalLineEdit": "",
+"NoteGroup": "",
+"Pitch": "",
+"PitchLineEdit": "",
+"PitchSet": ""
+}
+
+[application]
+
+config/name="Keyboard72"
+config/description="by Andrew Whise 2023
+
+Keyboard72 is a digital tool for musicians composing in the 72-Tone-Equal-Temperament tuning system. Each half-step is divided into 6 discrete pitches, turning the standard 12-note octave into 72 notes. This allows for exotic harmonies (both consonant and dissonant), as well as a much more accurate realization of the harmonic series.
+
+"
+run/main_scene="res://Scenes/MainScene.tscn"
+
+[autoload]
+
+Globals="*res://Scripts/Globals.gd"
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
+
+[input]
+
+ui_home={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777229,"unicode":0,"echo":false,"script":null)
+ ]
+}
+alt={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777240,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
