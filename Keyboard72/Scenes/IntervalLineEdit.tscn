@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/IntervalLineEdit.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/Oxygen12Theme.tres" type="Theme" id=2]
+
+[node name="IntervalLineEdit" type="LineEdit"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1826.0
+margin_bottom = -1054.0
+mouse_filter = 1
+theme = ExtResource( 2 )
+text = "72"
+caret_blink = true
+caret_blink_speed = 0.5
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="text_entered" from="." to="." method="_on_IntervalLineEdit_text_entered"]

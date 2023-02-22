@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Fonts/Oxygen12Theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scripts/PitchLineEdit.gd" type="Script" id=2]
+
+[node name="PitchLineEdit" type="LineEdit"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1826.0
+margin_bottom = -1054.0
+theme = ExtResource( 1 )
+text = "270"
+caret_blink = true
+caret_blink_speed = 0.5
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

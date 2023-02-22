@@ -1,0 +1,2754 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scripts/MainScene.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/triangle_keyboard.png" type="Texture" id=2]
+[ext_resource path="res://Fonts/Oxygen16Theme.tres" type="Theme" id=3]
+[ext_resource path="res://Fonts/Oxygen12Theme.tres" type="Theme" id=4]
+[ext_resource path="res://Scenes/GrandStaff.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Fonts/Oxygen14Theme.tres" type="Theme" id=6]
+[ext_resource path="res://Fonts/Oxygen20Theme.tres" type="Theme" id=7]
+[ext_resource path="res://Scenes/IntervalLineEdit.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scripts/PitchLineEdit.gd" type="Script" id=9]
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="KeyboardSprite" type="Sprite" parent="."]
+z_index = -2
+texture = ExtResource( 2 )
+centered = false
+region_rect = Rect2( 0, 80, 1920, 1000 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+
+[node name="AudioStreamPlayers" type="Node" parent="."]
+
+[node name="TriGlowTween" type="Tween" parent="."]
+process_priority = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TopMenu" type="Control" parent="CanvasLayer"]
+margin_top = -2.0
+margin_right = 1924.0
+margin_bottom = 38.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/TopMenu"]
+margin_left = -2.0
+margin_right = 1922.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 1920, 50 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TopMenu/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1917.0
+margin_bottom = 43.0
+
+[node name="SaveChordButton" type="Button" parent="CanvasLayer/TopMenu/PanelContainer/HBoxContainer"]
+visible = false
+margin_right = 112.0
+margin_bottom = 36.0
+theme = ExtResource( 3 )
+toggle_mode = true
+text = "Save Chord"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OpenChordButton" type="Button" parent="CanvasLayer/TopMenu/PanelContainer/HBoxContainer"]
+visible = false
+margin_right = 112.0
+margin_bottom = 36.0
+theme = ExtResource( 3 )
+toggle_mode = true
+text = "Open Chord"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NotationButton" type="Button" parent="CanvasLayer/TopMenu/PanelContainer/HBoxContainer"]
+margin_right = 92.0
+margin_bottom = 36.0
+theme = ExtResource( 3 )
+toggle_mode = true
+text = "Notation"
+
+[node name="TransformButton" type="Button" parent="CanvasLayer/TopMenu/PanelContainer/HBoxContainer"]
+margin_left = 96.0
+margin_right = 198.0
+margin_bottom = 36.0
+theme = ExtResource( 3 )
+toggle_mode = true
+text = "Transform"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnalysisButton" type="Button" parent="CanvasLayer/TopMenu/PanelContainer/HBoxContainer"]
+margin_left = 202.0
+margin_right = 354.0
+margin_bottom = 36.0
+theme = ExtResource( 3 )
+toggle_mode = true
+text = "Chord Analysis"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SettingsButton" type="Button" parent="CanvasLayer/TopMenu/PanelContainer/HBoxContainer"]
+margin_left = 358.0
+margin_right = 450.0
+margin_bottom = 36.0
+theme = ExtResource( 3 )
+toggle_mode = true
+text = "Settings"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HelpButton" type="Button" parent="CanvasLayer/TopMenu/PanelContainer/HBoxContainer"]
+margin_left = 454.0
+margin_right = 506.0
+margin_bottom = 36.0
+theme = ExtResource( 3 )
+toggle_mode = true
+text = "Help"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MouseLabel" type="Label" parent="CanvasLayer/TopMenu/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1917.0
+margin_bottom = 42.0
+theme = ExtResource( 4 )
+text = "Mouse button: 
+Note:"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GrandStaffPanelContainer" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -350.0
+margin_top = -384.5
+margin_right = 350.0
+margin_bottom = 384.5
+rect_min_size = Vector2( 700, 769 )
+rect_scale = Vector2( 0.75, 0.75 )
+rect_clip_content = true
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GrandStaff" parent="CanvasLayer/GrandStaffPanelContainer" instance=ExtResource( 5 )]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 693.0
+margin_bottom = 762.0
+rect_clip_content = true
+mouse_filter = 1
+
+[node name="SettingsPanelContainer" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -254.5
+margin_top = -160.0
+margin_right = 254.5
+margin_bottom = 160.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/SettingsPanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 502.0
+margin_bottom = 435.0
+
+[node name="SettingsLabel" type="Label" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer"]
+margin_right = 495.0
+margin_bottom = 19.0
+theme = ExtResource( 6 )
+text = "Settings"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer"]
+margin_top = 23.0
+margin_right = 495.0
+margin_bottom = 27.0
+
+[node name="GeneralLabel" type="Label" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer"]
+margin_top = 31.0
+margin_right = 495.0
+margin_bottom = 50.0
+theme = ExtResource( 6 )
+text = "General"
+align = 1
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer"]
+margin_top = 54.0
+margin_right = 495.0
+margin_bottom = 80.0
+
+[node name="TuningHeadingLabel" type="Label" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer/HBoxContainer7"]
+margin_top = 5.0
+margin_right = 294.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 294, 0 )
+theme = ExtResource( 4 )
+text = "A3 frequency: "
+
+[node name="TuningLineEdit" type="LineEdit" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer/HBoxContainer7"]
+margin_left = 298.0
+margin_right = 495.0
+margin_bottom = 26.0
+hint_tooltip = "FEATURE COMING SOON!"
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+text = "440.000 Hz"
+editable = false
+
+[node name="SharpsCheckButton" type="CheckBox" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer"]
+margin_top = 84.0
+margin_right = 495.0
+margin_bottom = 108.0
+hint_tooltip = "Notes will be displayed and notated as sharps instead of flats whenever possible."
+theme = ExtResource( 4 )
+text = "Prefer sharps to flats"
+
+[node name="MiddleC4CheckButton" type="CheckBox" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer"]
+margin_top = 112.0
+margin_right = 495.0
+margin_bottom = 136.0
+hint_tooltip = "If unchecked, Middle C is C3."
+theme = ExtResource( 4 )
+text = "Middle C is C4"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer"]
+margin_top = 140.0
+margin_right = 495.0
+margin_bottom = 162.0
+
+[node name="Label" type="Label" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer/HBoxContainer4"]
+margin_top = 3.0
+margin_right = 294.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 294, 0 )
+theme = ExtResource( 4 )
+text = "Name of smallest interval on piano: "
+
+[node name="HalfStepNameOptionButton" type="OptionButton" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer/HBoxContainer4"]
+margin_left = 298.0
+margin_right = 495.0
+margin_bottom = 22.0
+hint_tooltip = "The preferred name for the interval between F and F#, for example."
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+text = "halfstep"
+items = [ "halfstep", null, false, 0, null, "halftone", null, false, 1, null, "semitone", null, false, 2, null ]
+selected = 0
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer"]
+margin_top = 166.0
+margin_right = 495.0
+margin_bottom = 192.0
+
+[node name="Label" type="Label" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer/HBoxContainer9"]
+margin_top = 5.0
+margin_right = 294.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 294, 0 )
+theme = ExtResource( 4 )
+text = "Playback pitch randomization: "
+
+[node name="PlaybackCentRandomizationLineEdit" type="LineEdit" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer/HBoxContainer9"]
+margin_left = 298.0
+margin_right = 495.0
+margin_bottom = 26.0
+hint_tooltip = "When a sound file is played, its pitch is randomly altered by up to this many cents. This is to simulate the natural  imperfections of humans playing real physical instruments. Set to 0 to turn this feature off."
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+text = "1.50"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer"]
+margin_top = 196.0
+margin_right = 495.0
+margin_bottom = 222.0
+
+[node name="GSScaleLabel" type="Label" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer/HBoxContainer2"]
+margin_top = 5.0
+margin_right = 294.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 294, 0 )
+theme = ExtResource( 4 )
+text = "Grand Staff scale: "
+
+[node name="GSScaleLineEdit" type="LineEdit" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 298.0
+margin_right = 495.0
+margin_bottom = 26.0
+hint_tooltip = "FEATURE COMING SOON! Scales the size of the Grand Staff. Value must be between 0.25 and 2.0."
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+text = "0.75"
+editable = false
+caret_blink = true
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer"]
+margin_top = 226.0
+margin_right = 495.0
+margin_bottom = 248.0
+
+[node name="DateFormatLabel" type="Label" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer/HBoxContainer8"]
+margin_top = 3.0
+margin_right = 294.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 294, 0 )
+theme = ExtResource( 4 )
+text = "Date format: "
+
+[node name="DateFormatOptionButton" type="OptionButton" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer/HBoxContainer8"]
+margin_left = 298.0
+margin_right = 495.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+text = "Month-Day-Year"
+items = [ "Day-Month-Year", null, false, 0, null, "Month-Day-Year", null, false, 1, null, "Year-Day-Month", null, false, 2, null, "Year-Month-Day", null, false, 3, null ]
+selected = 1
+
+[node name="HBoxContainer10" type="HBoxContainer" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer"]
+margin_top = 252.0
+margin_right = 495.0
+margin_bottom = 278.0
+theme = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer/HBoxContainer10"]
+margin_top = 5.0
+margin_right = 161.0
+margin_bottom = 21.0
+text = "Camera movement speed: "
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer/HBoxContainer10"]
+margin_left = 165.0
+margin_right = 495.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="CameraSpeedLineEdit" type="LineEdit" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer/HBoxContainer10/HBoxContainer"]
+margin_left = 133.0
+margin_right = 330.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 197, 0 )
+text = "6.00"
+
+[node name="HSeparator3" type="HSeparator" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer"]
+margin_top = 282.0
+margin_right = 495.0
+margin_bottom = 286.0
+
+[node name="ChordAnalysisLabel" type="Label" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer"]
+margin_top = 290.0
+margin_right = 495.0
+margin_bottom = 309.0
+theme = ExtResource( 6 )
+text = "Chord Analysis"
+align = 1
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer"]
+margin_top = 313.0
+margin_right = 495.0
+margin_bottom = 335.0
+
+[node name="Label" type="Label" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer/HBoxContainer5"]
+margin_top = 3.0
+margin_right = 294.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 294, 0 )
+theme = ExtResource( 4 )
+text = "Intervals to list: "
+
+[node name="IntervalsToListOptionButton" type="OptionButton" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer/HBoxContainer5"]
+margin_left = 298.0
+margin_right = 495.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 197, 0 )
+hint_tooltip = "With n pitches in a pitch set, the total number of intervals in that pitch set  is ((n - 1) * n) / 2."
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+text = "All"
+items = [ "From lowest pitch", null, false, 0, null, "To highest pitch", null, false, 1, null, "From closest lower pitch", null, false, 2, null, "All", null, false, 3, null ]
+selected = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer"]
+margin_top = 339.0
+margin_right = 495.0
+margin_bottom = 361.0
+
+[node name="Label" type="Label" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer/HBoxContainer3"]
+margin_top = 3.0
+margin_right = 294.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 294, 0 )
+theme = ExtResource( 4 )
+text = "Interval distance format: "
+
+[node name="IvlDistanceFormatOptionButton" type="OptionButton" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 298.0
+margin_right = 495.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 197, 0 )
+hint_tooltip = "If the interval is 2 octaves, 9 half-steps, and 1 twelfth-step (16.67 cents), this is how it would be displayed in the Chord Analysis Window."
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+text = "2o 9h 1t"
+items = [ "2.9.1", null, false, 0, null, "2o 9h 1t", null, false, 1, null, "2v 9h 1t", null, false, 2, null, "2oc 9hs 1ts", null, false, 3, null, "2oct 9hs 1ts", null, false, 4, null, "2.9.17", null, false, 5, null, "2o 9h 17c", null, false, 6, null, "2v 9h 17c", null, false, 7, null, "2oc 9hs 17c", null, false, 8, null, "2oct 9hs 17c", null, false, 9, null ]
+selected = 1
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer"]
+margin_top = 365.0
+margin_right = 495.0
+margin_bottom = 391.0
+
+[node name="Label" type="Label" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer/HBoxContainer6"]
+margin_top = 5.0
+margin_right = 294.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 294, 0 )
+theme = ExtResource( 4 )
+text = "Interval freq. ratio maximum denominator: "
+
+[node name="MaxDenominatorSpinBox" type="SpinBox" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer/HBoxContainer6"]
+margin_left = 298.0
+margin_right = 495.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 197, 0 )
+hint_tooltip = "Higher value means less error, while lower value usually means more useful in composition."
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+min_value = 16.0
+max_value = 60.0
+value = 32.0
+rounded = true
+
+[node name="HSeparator2" type="HSeparator" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer"]
+margin_top = 395.0
+margin_right = 495.0
+margin_bottom = 399.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer"]
+margin_top = 403.0
+margin_right = 495.0
+margin_bottom = 428.0
+alignment = 2
+
+[node name="CloseButton" type="Button" parent="CanvasLayer/SettingsPanelContainer/VBoxContainer/HBoxContainer"]
+margin_left = 443.0
+margin_right = 495.0
+margin_bottom = 25.0
+theme = ExtResource( 6 )
+text = "Close"
+
+[node name="ChordAnalysisPanelContainer" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -352.0
+margin_top = -318.0
+margin_right = 352.0
+margin_bottom = 318.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ChordAnalysisPanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 709.0
+margin_bottom = 629.0
+
+[node name="Label" type="Label" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer"]
+margin_right = 702.0
+margin_bottom = 22.0
+theme = ExtResource( 3 )
+text = "Chord Analysis"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer"]
+margin_top = 26.0
+margin_right = 702.0
+margin_bottom = 30.0
+
+[node name="PitchesHBoxContainer" type="HBoxContainer" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer"]
+margin_top = 34.0
+margin_right = 702.0
+margin_bottom = 97.0
+rect_min_size = Vector2( 0, 63 )
+
+[node name="PitchesHeadingLabel" type="Label" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/PitchesHBoxContainer"]
+margin_right = 98.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 98, 0 )
+size_flags_vertical = 2
+theme = ExtResource( 4 )
+text = "Pitches: "
+
+[node name="PitchesTextEdit" type="TextEdit" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/PitchesHBoxContainer"]
+margin_left = 102.0
+margin_right = 702.0
+margin_bottom = 63.0
+rect_min_size = Vector2( 0, 63 )
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+text = "asdfasd, asdfnun12, jniounsdfasd, 2i3j4io, asdfuih9uh3, asdfasj;lkj, sdfguj, aspodfuw, asidufbiuwn. saodin oasuhuw, iasudnbw"
+wrap_enabled = true
+
+[node name="NoteNumbersHBoxContainer" type="HBoxContainer" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer"]
+margin_top = 101.0
+margin_right = 702.0
+margin_bottom = 164.0
+rect_min_size = Vector2( 0, 63 )
+
+[node name="NoteNumbersHeadingLabel" type="Label" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/NoteNumbersHBoxContainer"]
+margin_right = 98.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 98, 0 )
+size_flags_vertical = 2
+theme = ExtResource( 4 )
+text = "Note numbers: "
+
+[node name="NoteNumbersTextEdit" type="TextEdit" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/NoteNumbersHBoxContainer"]
+margin_left = 102.0
+margin_right = 702.0
+margin_bottom = 63.0
+rect_min_size = Vector2( 105, 26 )
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+wrap_enabled = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="FrequenciesHBoxContainer" type="HBoxContainer" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer"]
+margin_top = 168.0
+margin_right = 702.0
+margin_bottom = 231.0
+rect_min_size = Vector2( 0, 63 )
+
+[node name="FrequenciesHeadingLabel" type="Label" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/FrequenciesHBoxContainer"]
+margin_right = 98.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 98, 0 )
+size_flags_vertical = 2
+theme = ExtResource( 4 )
+text = "Frequencies: "
+
+[node name="FrequenciesTextEdit" type="TextEdit" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/FrequenciesHBoxContainer"]
+margin_left = 102.0
+margin_right = 702.0
+margin_bottom = 63.0
+rect_min_size = Vector2( 105, 26 )
+hint_tooltip = "Manually typed frequencies here will be rounded to the nearest twelfth-step."
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+wrap_enabled = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="NumberOfPitchesHBoxContainer" type="HBoxContainer" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer"]
+margin_top = 235.0
+margin_right = 702.0
+margin_bottom = 251.0
+
+[node name="Label" type="Label" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/NumberOfPitchesHBoxContainer"]
+margin_right = 231.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 231, 0 )
+theme = ExtResource( 4 )
+text = "Number of pitches: "
+
+[node name="NumberOfPitchesLabel" type="Label" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/NumberOfPitchesHBoxContainer"]
+margin_left = 235.0
+margin_right = 702.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+text = "0"
+align = 2
+autowrap = true
+
+[node name="NumberOfPitchClassesHBoxContainer" type="HBoxContainer" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer"]
+margin_top = 255.0
+margin_right = 702.0
+margin_bottom = 271.0
+
+[node name="Label" type="Label" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/NumberOfPitchClassesHBoxContainer"]
+margin_right = 231.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 231, 0 )
+theme = ExtResource( 4 )
+text = "Number of pitch classes: "
+
+[node name="NumberOfPitchClassesLabel" type="Label" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/NumberOfPitchClassesHBoxContainer"]
+margin_left = 235.0
+margin_right = 702.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+text = "0"
+align = 2
+autowrap = true
+
+[node name="PitchClassesHBoxContainer" type="HBoxContainer" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer"]
+margin_top = 275.0
+margin_right = 702.0
+margin_bottom = 291.0
+
+[node name="Label" type="Label" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/PitchClassesHBoxContainer"]
+margin_right = 231.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 231, 0 )
+size_flags_vertical = 2
+theme = ExtResource( 4 )
+text = "Pitch classes: "
+
+[node name="PitchClassesLabel" type="LineEdit" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/PitchClassesHBoxContainer"]
+margin_left = 235.0
+margin_right = 702.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+text = "0"
+align = 2
+editable = false
+
+[node name="PrimeFormHBoxContainer" type="HBoxContainer" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer"]
+margin_top = 295.0
+margin_right = 702.0
+margin_bottom = 311.0
+
+[node name="Label" type="Label" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/PrimeFormHBoxContainer"]
+margin_right = 231.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 231, 0 )
+size_flags_vertical = 2
+theme = ExtResource( 4 )
+text = "Prime form: "
+
+[node name="PrimeFormLabel" type="LineEdit" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/PrimeFormHBoxContainer"]
+margin_left = 235.0
+margin_right = 702.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+text = "0"
+align = 2
+editable = false
+
+[node name="NormalFormHBoxContainer" type="HBoxContainer" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer"]
+margin_top = 315.0
+margin_right = 702.0
+margin_bottom = 331.0
+
+[node name="Label" type="Label" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/NormalFormHBoxContainer"]
+margin_right = 231.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 231, 0 )
+size_flags_vertical = 2
+theme = ExtResource( 4 )
+text = "Normal form (T70I): "
+
+[node name="NormalFormLabel" type="LineEdit" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/NormalFormHBoxContainer"]
+margin_left = 235.0
+margin_right = 702.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+text = "0"
+align = 2
+editable = false
+
+[node name="TwelfthStepIntervalsHBoxContainer" type="HBoxContainer" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer"]
+margin_top = 335.0
+margin_right = 702.0
+margin_bottom = 351.0
+
+[node name="Label" type="Label" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/TwelfthStepIntervalsHBoxContainer"]
+margin_right = 231.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 231, 0 )
+size_flags_vertical = 2
+theme = ExtResource( 4 )
+text = "12th-step intervals: "
+
+[node name="TwelfthStepIntervalsLabel" type="LineEdit" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/TwelfthStepIntervalsHBoxContainer"]
+margin_left = 235.0
+margin_right = 702.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+text = "0"
+align = 2
+editable = false
+
+[node name="NormalFormTwelfthStepIntervalsHBoxContainer" type="HBoxContainer" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer"]
+margin_top = 355.0
+margin_right = 702.0
+margin_bottom = 371.0
+
+[node name="Label" type="Label" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/NormalFormTwelfthStepIntervalsHBoxContainer"]
+margin_right = 231.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 231, 0 )
+size_flags_vertical = 2
+theme = ExtResource( 4 )
+text = "Normal form 12th-step intervals: "
+
+[node name="NormalFormTwelfthStepIntervalsLabel" type="LineEdit" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/NormalFormTwelfthStepIntervalsHBoxContainer"]
+margin_left = 235.0
+margin_right = 702.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+text = "0"
+align = 2
+editable = false
+
+[node name="IntervalVectorHBoxContainer" type="HBoxContainer" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer"]
+margin_top = 355.0
+margin_right = 702.0
+margin_bottom = 371.0
+
+[node name="Label" type="Label" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IntervalVectorHBoxContainer"]
+margin_right = 231.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 231, 0 )
+size_flags_vertical = 2
+theme = ExtResource( 4 )
+text = "Interval vector: "
+
+[node name="IntervalVectorLabel" type="LineEdit" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IntervalVectorHBoxContainer"]
+margin_left = 235.0
+margin_right = 702.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+text = "0"
+align = 2
+editable = false
+
+[node name="IntervalsLabel" type="Label" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer"]
+margin_top = 375.0
+margin_right = 702.0
+margin_bottom = 394.0
+theme = ExtResource( 6 )
+text = "Intervals"
+align = 1
+
+[node name="HSeparator2" type="HSeparator" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer"]
+margin_top = 398.0
+margin_right = 702.0
+margin_bottom = 402.0
+
+[node name="IvlHeadingsHBoxContainer" type="HBoxContainer" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer"]
+margin_top = 406.0
+margin_right = 702.0
+margin_bottom = 430.0
+rect_min_size = Vector2( 581, 0 )
+
+[node name="PitchAHeadingVBox" type="VBoxContainer" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlHeadingsHBoxContainer"]
+margin_right = 94.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 94, 0 )
+theme = ExtResource( 4 )
+
+[node name="PitchAHeadingLabel" type="Label" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlHeadingsHBoxContainer/PitchAHeadingVBox"]
+margin_right = 94.0
+margin_bottom = 16.0
+theme = ExtResource( 4 )
+text = "Pitch A"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlHeadingsHBoxContainer/PitchAHeadingVBox"]
+margin_top = 20.0
+margin_right = 94.0
+margin_bottom = 24.0
+
+[node name="PitchBHeadingVBox" type="VBoxContainer" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlHeadingsHBoxContainer"]
+margin_left = 98.0
+margin_right = 192.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 94, 0 )
+theme = ExtResource( 4 )
+
+[node name="PitchBHeadingLabel" type="Label" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlHeadingsHBoxContainer/PitchBHeadingVBox"]
+margin_right = 94.0
+margin_bottom = 16.0
+theme = ExtResource( 4 )
+text = "Pitch B"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlHeadingsHBoxContainer/PitchBHeadingVBox"]
+margin_top = 20.0
+margin_right = 94.0
+margin_bottom = 24.0
+
+[node name="FreqRatioHeadingVBox" type="VBoxContainer" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlHeadingsHBoxContainer"]
+margin_left = 196.0
+margin_right = 290.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 94, 0 )
+theme = ExtResource( 4 )
+
+[node name="FreqRatioHeadingLabel" type="Label" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlHeadingsHBoxContainer/FreqRatioHeadingVBox"]
+margin_right = 94.0
+margin_bottom = 16.0
+theme = ExtResource( 4 )
+text = "Freq. ratio"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlHeadingsHBoxContainer/FreqRatioHeadingVBox"]
+margin_top = 20.0
+margin_right = 94.0
+margin_bottom = 24.0
+
+[node name="FreqRatioErrorHeadingVBox" type="VBoxContainer" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlHeadingsHBoxContainer"]
+margin_left = 294.0
+margin_right = 364.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 70, 0 )
+theme = ExtResource( 4 )
+
+[node name="FreqRatioErrorHeadingLabel" type="Label" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlHeadingsHBoxContainer/FreqRatioErrorHeadingVBox"]
+margin_right = 70.0
+margin_bottom = 16.0
+theme = ExtResource( 4 )
+text = "Error"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlHeadingsHBoxContainer/FreqRatioErrorHeadingVBox"]
+margin_top = 20.0
+margin_right = 70.0
+margin_bottom = 24.0
+
+[node name="DistanceHeadingVBox" type="VBoxContainer" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlHeadingsHBoxContainer"]
+margin_left = 368.0
+margin_right = 483.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 115, 0 )
+theme = ExtResource( 4 )
+
+[node name="DistanceHeadingLabel" type="Label" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlHeadingsHBoxContainer/DistanceHeadingVBox"]
+margin_right = 115.0
+margin_bottom = 16.0
+theme = ExtResource( 4 )
+text = "Distance"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlHeadingsHBoxContainer/DistanceHeadingVBox"]
+margin_top = 20.0
+margin_right = 115.0
+margin_bottom = 24.0
+
+[node name="TotalTwelfthStepsHeadingVBox" type="VBoxContainer" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlHeadingsHBoxContainer"]
+margin_left = 487.0
+margin_right = 581.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 94, 0 )
+theme = ExtResource( 4 )
+
+[node name="TotalTwelfthStepsHeadingLabel" type="Label" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlHeadingsHBoxContainer/TotalTwelfthStepsHeadingVBox"]
+margin_right = 94.0
+margin_bottom = 16.0
+theme = ExtResource( 4 )
+text = "12th-steps"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlHeadingsHBoxContainer/TotalTwelfthStepsHeadingVBox"]
+margin_top = 20.0
+margin_right = 94.0
+margin_bottom = 24.0
+
+[node name="PitchLockHeadingVBox" type="VBoxContainer" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlHeadingsHBoxContainer"]
+visible = false
+margin_left = 585.0
+margin_right = 690.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 105, 0 )
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+
+[node name="PitchLockHeadingLabel" type="Label" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlHeadingsHBoxContainer/PitchLockHeadingVBox"]
+margin_right = 105.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 105, 0 )
+theme = ExtResource( 4 )
+text = "Pitch Lock"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlHeadingsHBoxContainer/PitchLockHeadingVBox"]
+margin_top = 20.0
+margin_right = 105.0
+margin_bottom = 24.0
+
+[node name="IntervalLockHeadingVBox" type="VBoxContainer" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlHeadingsHBoxContainer"]
+margin_left = 585.0
+margin_right = 702.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 105, 0 )
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+
+[node name="IntervalLockHeadingLabel" type="Label" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlHeadingsHBoxContainer/IntervalLockHeadingVBox"]
+margin_right = 117.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 105, 0 )
+theme = ExtResource( 4 )
+text = "Interval Lock"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlHeadingsHBoxContainer/IntervalLockHeadingVBox"]
+margin_top = 20.0
+margin_right = 117.0
+margin_bottom = 24.0
+
+[node name="IvlScrollContainer" type="ScrollContainer" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer"]
+margin_top = 434.0
+margin_right = 702.0
+margin_bottom = 582.0
+rect_min_size = Vector2( 581, 148 )
+follow_focus = true
+scroll_horizontal_enabled = false
+
+[node name="IntervalHBoxContainer2" type="HBoxContainer" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlScrollContainer"]
+margin_right = 690.0
+
+[node name="IvlPitchAVBoxContainer" type="VBoxContainer" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlScrollContainer/IntervalHBoxContainer2"]
+margin_right = 94.0
+rect_min_size = Vector2( 94, 0 )
+
+[node name="PitchALabel0" type="Label" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlScrollContainer/IntervalHBoxContainer2/IvlPitchAVBoxContainer"]
+visible = false
+margin_right = 94.0
+margin_bottom = 16.0
+mouse_filter = 1
+size_flags_vertical = 3
+theme = ExtResource( 4 )
+text = "C#4 +33.33c"
+align = 1
+valign = 1
+
+[node name="IvlPitchBVBoxContainer" type="VBoxContainer" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlScrollContainer/IntervalHBoxContainer2"]
+margin_left = 98.0
+margin_right = 192.0
+rect_min_size = Vector2( 94, 0 )
+size_flags_horizontal = 3
+
+[node name="PitchBLabel0" type="Label" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlScrollContainer/IntervalHBoxContainer2/IvlPitchBVBoxContainer"]
+visible = false
+margin_right = 94.0
+margin_bottom = 16.0
+mouse_filter = 1
+size_flags_vertical = 3
+theme = ExtResource( 4 )
+text = "C#4 +33.33c"
+align = 1
+valign = 1
+
+[node name="IvlFreqRatioVBoxContainer" type="VBoxContainer" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlScrollContainer/IntervalHBoxContainer2"]
+margin_left = 196.0
+margin_right = 290.0
+rect_min_size = Vector2( 94, 0 )
+size_flags_horizontal = 3
+
+[node name="FreqRatioLineEdit0" type="LineEdit" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlScrollContainer/IntervalHBoxContainer2/IvlFreqRatioVBoxContainer"]
+visible = false
+margin_right = 94.0
+margin_bottom = 26.0
+hint_tooltip = "The approximate ratio freq_b/freq_a of this interval.
+
+The ratio must be 1 or greater, and the denominator cannot be greater than the Max Denominator in the Settings Window."
+mouse_filter = 1
+theme = ExtResource( 4 )
+text = "12/11"
+align = 1
+
+[node name="IvlFreqRatioErrorVBoxContainer" type="VBoxContainer" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlScrollContainer/IntervalHBoxContainer2"]
+margin_left = 294.0
+margin_right = 364.0
+rect_min_size = Vector2( 70, 0 )
+size_flags_horizontal = 3
+
+[node name="FreqRatioErrorLabel0" type="Label" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlScrollContainer/IntervalHBoxContainer2/IvlFreqRatioErrorVBoxContainer"]
+visible = false
+margin_right = 70.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 70, 0 )
+hint_tooltip = "The number of cents the interval is off by the written frequency ratio."
+mouse_filter = 1
+size_flags_vertical = 3
+theme = ExtResource( 4 )
+text = "+00.00c "
+align = 1
+valign = 1
+
+[node name="IvlDistanceVBoxContainer" type="VBoxContainer" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlScrollContainer/IntervalHBoxContainer2"]
+margin_left = 368.0
+margin_right = 483.0
+rect_min_size = Vector2( 115, 0 )
+size_flags_horizontal = 3
+
+[node name="DistanceLabel0" type="Label" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlScrollContainer/IntervalHBoxContainer2/IvlDistanceVBoxContainer"]
+visible = false
+margin_right = 115.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 98, 0 )
+hint_tooltip = "octaves.half-steps.twelfth-steps"
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 4 )
+text = "-2oct 11hs 2ts"
+align = 1
+valign = 1
+
+[node name="IvlTotalTwelfthStepsVBoxContainer" type="VBoxContainer" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlScrollContainer/IntervalHBoxContainer2"]
+margin_left = 487.0
+margin_right = 581.0
+rect_min_size = Vector2( 94, 0 )
+size_flags_horizontal = 3
+
+[node name="TotalTwelfthStepsLineEdit0" type="LineEdit" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlScrollContainer/IntervalHBoxContainer2/IvlTotalTwelfthStepsVBoxContainer"]
+visible = false
+margin_right = 94.0
+margin_bottom = 26.0
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 4 )
+text = "-134"
+align = 1
+
+[node name="IvlPitchLockVBoxContainer" type="VBoxContainer" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlScrollContainer/IntervalHBoxContainer2"]
+visible = false
+margin_left = 585.0
+margin_right = 690.0
+rect_min_size = Vector2( 105, 0 )
+size_flags_horizontal = 3
+
+[node name="PitchLockOptionButton0" type="OptionButton" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlScrollContainer/IntervalHBoxContainer2/IvlPitchLockVBoxContainer"]
+visible = false
+margin_right = 105.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 0, 26 )
+hint_tooltip = "Free: When either pitch changes, the other pitch stays where it is and the interval is updated.
+Lock: When either pitch changes, the other pitch moves so that the interval is the same.
+"
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+text = "Free"
+items = [ "Free", null, false, 0, null, "Lock", null, false, 1, null ]
+selected = 0
+
+[node name="IvlIntervalLockVBoxContainer" type="VBoxContainer" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlScrollContainer/IntervalHBoxContainer2"]
+margin_left = 585.0
+margin_right = 690.0
+rect_min_size = Vector2( 105, 0 )
+size_flags_horizontal = 3
+
+[node name="IntervalLockOptionButton0" type="OptionButton" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlScrollContainer/IntervalHBoxContainer2/IvlIntervalLockVBoxContainer"]
+visible = false
+margin_right = 105.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 0, 26 )
+hint_tooltip = "Whenever this interval is manually changed, one of its two pitches will change while the other pitch remains the same.
+Lock A: Pitch B will be changed while Pitch A will stay the same.
+Lock B: Pitch A will be changed while Pitch B stays the same."
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+text = "Lock A"
+items = [ "Lock A", null, false, 0, null, "Lock B", null, false, 1, null ]
+selected = 0
+
+[node name="HSeparator4" type="HSeparator" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer"]
+margin_top = 586.0
+margin_right = 702.0
+margin_bottom = 590.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer"]
+margin_top = 594.0
+margin_right = 702.0
+margin_bottom = 622.0
+alignment = 2
+
+[node name="ChordAnalysisCloseButton" type="Button" parent="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/HBoxContainer"]
+margin_left = 640.0
+margin_right = 702.0
+margin_bottom = 28.0
+theme = ExtResource( 3 )
+text = "Close"
+
+[node name="HelpPanelContainer" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -322.0
+margin_top = -307.5
+margin_right = 322.0
+margin_bottom = 307.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HelpPanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 637.0
+margin_bottom = 688.0
+
+[node name="Label" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer"]
+margin_right = 630.0
+margin_bottom = 22.0
+theme = ExtResource( 3 )
+text = "Help"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/HelpPanelContainer/VBoxContainer"]
+margin_top = 26.0
+margin_right = 630.0
+margin_bottom = 30.0
+
+[node name="AboutLabel" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer"]
+margin_top = 34.0
+margin_right = 630.0
+margin_bottom = 53.0
+theme = ExtResource( 6 )
+text = "About"
+align = 1
+autowrap = true
+
+[node name="HSeparator4" type="HSeparator" parent="CanvasLayer/HelpPanelContainer/VBoxContainer"]
+margin_top = 57.0
+margin_right = 630.0
+margin_bottom = 61.0
+
+[node name="HBoxContainer15" type="HBoxContainer" parent="CanvasLayer/HelpPanelContainer/VBoxContainer"]
+margin_top = 65.0
+margin_right = 630.0
+margin_bottom = 92.0
+theme = ExtResource( 4 )
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer15"]
+margin_right = 120.0
+margin_bottom = 27.0
+theme = ExtResource( 7 )
+text = "Keyboard72"
+
+[node name="HBoxContainer16" type="HBoxContainer" parent="CanvasLayer/HelpPanelContainer/VBoxContainer"]
+margin_top = 96.0
+margin_right = 630.0
+margin_bottom = 115.0
+
+[node name="AuthorLabel" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer16"]
+margin_right = 168.0
+margin_bottom = 19.0
+theme = ExtResource( 6 )
+text = "by Andrew Whise, 2023"
+
+[node name="HBoxContainer18" type="HBoxContainer" parent="CanvasLayer/HelpPanelContainer/VBoxContainer"]
+margin_top = 119.0
+margin_right = 630.0
+margin_bottom = 138.0
+theme = ExtResource( 4 )
+
+[node name="VersionLabel" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer18"]
+margin_right = 104.0
+margin_bottom = 19.0
+theme = ExtResource( 6 )
+text = "Version 0.0.1"
+
+[node name="HBoxContainer17" type="HBoxContainer" parent="CanvasLayer/HelpPanelContainer/VBoxContainer"]
+margin_top = 142.0
+margin_right = 630.0
+margin_bottom = 210.0
+
+[node name="DescriptionLabel" type="RichTextLabel" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer17"]
+margin_right = 630.0
+margin_bottom = 68.0
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 4 )
+bbcode_enabled = true
+bbcode_text = "    Keyboard72 is a digital tool for musicians composing in the 72-Tone-Equal-Temperament tuning system. Each half-step is divided into 6 discrete pitches, turning the standard 12-note octave into 72 notes. This allows for exotic harmonies (both consonant and dissonant), as well as a much more accurate realization of the harmonic series."
+text = "    Keyboard72 is a digital tool for musicians composing in the 72-Tone-Equal-Temperament tuning system. Each half-step is divided into 6 discrete pitches, turning the standard 12-note octave into 72 notes. This allows for exotic harmonies (both consonant and dissonant), as well as a much more accurate realization of the harmonic series."
+fit_content_height = true
+
+[node name="HotkeysLabel" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer"]
+margin_top = 214.0
+margin_right = 630.0
+margin_bottom = 233.0
+theme = ExtResource( 6 )
+text = "Hotkeys"
+align = 1
+autowrap = true
+
+[node name="HSeparator3" type="HSeparator" parent="CanvasLayer/HelpPanelContainer/VBoxContainer"]
+margin_top = 237.0
+margin_right = 630.0
+margin_bottom = 241.0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/HelpPanelContainer/VBoxContainer"]
+margin_top = 245.0
+margin_right = 630.0
+margin_bottom = 261.0
+theme = ExtResource( 4 )
+
+[node name="LeftClickLabel" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer3"]
+margin_right = 84.0
+margin_bottom = 16.0
+text = "Left click: "
+
+[node name="Label" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 88.0
+margin_right = 630.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+text = "Play/stop pitch."
+align = 2
+
+[node name="HBoxContainer19" type="HBoxContainer" parent="CanvasLayer/HelpPanelContainer/VBoxContainer"]
+margin_top = 265.0
+margin_right = 630.0
+margin_bottom = 281.0
+theme = ExtResource( 4 )
+
+[node name="CtrlLeftClickLabel" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer19"]
+margin_right = 133.0
+margin_bottom = 16.0
+text = "Ctrl + Left click: "
+
+[node name="Label" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer19"]
+margin_left = 137.0
+margin_right = 630.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+text = "Add active pitch to selection."
+align = 2
+
+[node name="HBoxContainer21" type="HBoxContainer" parent="CanvasLayer/HelpPanelContainer/VBoxContainer"]
+margin_top = 285.0
+margin_right = 630.0
+margin_bottom = 301.0
+theme = ExtResource( 4 )
+
+[node name="CtrlLeftClickDragLabel" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer21"]
+margin_right = 182.0
+margin_bottom = 16.0
+text = "Ctrl + Left click (drag): "
+
+[node name="Label" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer21"]
+margin_left = 186.0
+margin_right = 630.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+text = "Add multiple active pitches to selection."
+align = 2
+
+[node name="HBoxContainer20" type="HBoxContainer" parent="CanvasLayer/HelpPanelContainer/VBoxContainer"]
+margin_top = 305.0
+margin_right = 630.0
+margin_bottom = 321.0
+theme = ExtResource( 4 )
+
+[node name="AltLeftClickLabel" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer20"]
+margin_right = 126.0
+margin_bottom = 16.0
+text = "Alt + Left click: "
+
+[node name="Label" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer20"]
+margin_left = 130.0
+margin_right = 630.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+text = "Remove active pitch from selection."
+align = 2
+
+[node name="HBoxContainer22" type="HBoxContainer" parent="CanvasLayer/HelpPanelContainer/VBoxContainer"]
+margin_top = 325.0
+margin_right = 630.0
+margin_bottom = 341.0
+theme = ExtResource( 4 )
+
+[node name="AltLeftClickDragLabel" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer22"]
+margin_right = 175.0
+margin_bottom = 16.0
+text = "Alt + Left click (drag): "
+
+[node name="Label" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer22"]
+margin_left = 179.0
+margin_right = 630.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+text = "Remove multiple active pitches from selection."
+align = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HelpPanelContainer/VBoxContainer"]
+margin_top = 345.0
+margin_right = 630.0
+margin_bottom = 361.0
+theme = ExtResource( 4 )
+
+[node name="BackspaceLabel" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer"]
+margin_right = 77.0
+margin_bottom = 16.0
+text = "Backspace: "
+
+[node name="Label" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer"]
+margin_left = 81.0
+margin_right = 630.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+text = "Stop all playing pitches / Stop selected pitches."
+align = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CanvasLayer/HelpPanelContainer/VBoxContainer"]
+margin_top = 365.0
+margin_right = 630.0
+margin_bottom = 381.0
+theme = ExtResource( 4 )
+
+[node name="EscapeLabel" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer4"]
+margin_right = 56.0
+margin_bottom = 16.0
+text = "Escape: "
+
+[node name="Label" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer4"]
+margin_left = 60.0
+margin_right = 630.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+text = "Clear selection / drop focus from input field."
+align = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="CanvasLayer/HelpPanelContainer/VBoxContainer"]
+margin_top = 385.0
+margin_right = 630.0
+margin_bottom = 401.0
+theme = ExtResource( 4 )
+
+[node name="HLabel" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer5"]
+margin_right = 21.0
+margin_bottom = 16.0
+text = "H: "
+
+[node name="Label" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer5"]
+margin_left = 25.0
+margin_right = 630.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+text = "Open/close Help Window."
+align = 2
+
+[node name="HBoxContainer14" type="HBoxContainer" parent="CanvasLayer/HelpPanelContainer/VBoxContainer"]
+margin_top = 405.0
+margin_right = 630.0
+margin_bottom = 421.0
+theme = ExtResource( 4 )
+
+[node name="SLabel" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer14"]
+margin_right = 21.0
+margin_bottom = 16.0
+text = "S: "
+
+[node name="Label" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer14"]
+margin_left = 25.0
+margin_right = 630.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+text = "Open/close Settings Window."
+align = 2
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="CanvasLayer/HelpPanelContainer/VBoxContainer"]
+margin_top = 425.0
+margin_right = 630.0
+margin_bottom = 441.0
+theme = ExtResource( 4 )
+
+[node name="NLabel" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer6"]
+margin_right = 21.0
+margin_bottom = 16.0
+text = "N: "
+
+[node name="Label" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer6"]
+margin_left = 25.0
+margin_right = 630.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+text = "Open/close Notation Window."
+align = 2
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="CanvasLayer/HelpPanelContainer/VBoxContainer"]
+margin_top = 445.0
+margin_right = 630.0
+margin_bottom = 461.0
+theme = ExtResource( 4 )
+
+[node name="ALabel" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer7"]
+margin_right = 21.0
+margin_bottom = 16.0
+text = "A: "
+
+[node name="Label" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer7"]
+margin_left = 25.0
+margin_right = 630.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+text = "Open/close Chord Analysis Window."
+align = 2
+
+[node name="HBoxContainer12" type="HBoxContainer" parent="CanvasLayer/HelpPanelContainer/VBoxContainer"]
+margin_top = 465.0
+margin_right = 630.0
+margin_bottom = 481.0
+
+[node name="TLabel" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer12"]
+margin_right = 21.0
+margin_bottom = 16.0
+theme = ExtResource( 4 )
+text = "T: "
+
+[node name="Label" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer12"]
+margin_left = 25.0
+margin_right = 630.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+text = "Open/close Transform Window."
+align = 2
+
+[node name="HBoxContainer13" type="HBoxContainer" parent="CanvasLayer/HelpPanelContainer/VBoxContainer"]
+margin_top = 485.0
+margin_right = 630.0
+margin_bottom = 501.0
+theme = ExtResource( 4 )
+
+[node name="CtrlSLabel" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer13"]
+margin_right = 70.0
+margin_bottom = 16.0
+text = "Ctrl + S: "
+
+[node name="Label" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer13"]
+margin_left = 74.0
+margin_right = 630.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+text = "Save."
+align = 2
+
+[node name="HBoxContainer23" type="HBoxContainer" parent="CanvasLayer/HelpPanelContainer/VBoxContainer"]
+margin_top = 505.0
+margin_right = 630.0
+margin_bottom = 521.0
+theme = ExtResource( 4 )
+
+[node name="ShiftCtrlSLabel" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer23"]
+margin_right = 126.0
+margin_bottom = 16.0
+text = "Shift + Ctrl + S: "
+
+[node name="Label" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer23"]
+margin_left = 130.0
+margin_right = 630.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+text = "Save as..."
+align = 2
+
+[node name="HBoxContainer10" type="HBoxContainer" parent="CanvasLayer/HelpPanelContainer/VBoxContainer"]
+margin_top = 525.0
+margin_right = 630.0
+margin_bottom = 541.0
+theme = ExtResource( 4 )
+
+[node name="CtrlALabel" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer10"]
+margin_right = 70.0
+margin_bottom = 16.0
+text = "Ctrl + A: "
+
+[node name="Label" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer10"]
+margin_left = 74.0
+margin_right = 630.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+text = "Select all pitches."
+align = 2
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="CanvasLayer/HelpPanelContainer/VBoxContainer"]
+margin_top = 545.0
+margin_right = 630.0
+margin_bottom = 561.0
+theme = ExtResource( 4 )
+
+[node name="CtrlCLabel" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer8"]
+margin_right = 70.0
+margin_bottom = 16.0
+text = "Ctrl + C: "
+
+[node name="Label" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer8"]
+margin_left = 74.0
+margin_right = 630.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+text = "Copy selected pitches."
+align = 2
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="CanvasLayer/HelpPanelContainer/VBoxContainer"]
+margin_top = 565.0
+margin_right = 630.0
+margin_bottom = 581.0
+theme = ExtResource( 4 )
+
+[node name="CtrlVLabel" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer9"]
+margin_right = 70.0
+margin_bottom = 16.0
+text = "Ctrl + V: "
+
+[node name="Label" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer9"]
+margin_left = 74.0
+margin_right = 630.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+text = "Paste copied pitches."
+align = 2
+
+[node name="HBoxContainer11" type="HBoxContainer" parent="CanvasLayer/HelpPanelContainer/VBoxContainer"]
+margin_top = 585.0
+margin_right = 630.0
+margin_bottom = 601.0
+theme = ExtResource( 4 )
+
+[node name="CtrlShiftVLabel" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer11"]
+margin_right = 126.0
+margin_bottom = 16.0
+text = "Shift + Ctrl + V: "
+
+[node name="Label" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer11"]
+margin_left = 130.0
+margin_right = 630.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+text = "Stop selected pitches and paste copied pitches."
+align = 2
+
+[node name="HBoxContainer24" type="HBoxContainer" parent="CanvasLayer/HelpPanelContainer/VBoxContainer"]
+margin_top = 605.0
+margin_right = 630.0
+margin_bottom = 621.0
+theme = ExtResource( 4 )
+
+[node name="CtrlUpLabel" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer24"]
+margin_right = 77.0
+margin_bottom = 16.0
+text = "Ctrl + Up: "
+
+[node name="Label" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer24"]
+margin_left = 81.0
+margin_right = 630.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+text = "Transpose selected pitches up 1 12th-step."
+align = 2
+
+[node name="HBoxContainer25" type="HBoxContainer" parent="CanvasLayer/HelpPanelContainer/VBoxContainer"]
+margin_top = 625.0
+margin_right = 630.0
+margin_bottom = 641.0
+theme = ExtResource( 4 )
+
+[node name="CtrlDownLabel" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer25"]
+margin_right = 77.0
+margin_bottom = 16.0
+text = "Ctrl + Up: "
+
+[node name="Label" type="Label" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer25"]
+margin_left = 81.0
+margin_right = 630.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+text = "Transpose selected pitches down 1 12th-step."
+align = 2
+
+[node name="HSeparator2" type="HSeparator" parent="CanvasLayer/HelpPanelContainer/VBoxContainer"]
+margin_top = 645.0
+margin_right = 630.0
+margin_bottom = 649.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/HelpPanelContainer/VBoxContainer"]
+margin_top = 653.0
+margin_right = 630.0
+margin_bottom = 681.0
+alignment = 2
+
+[node name="HelpCloseButton" type="Button" parent="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 568.0
+margin_right = 630.0
+margin_bottom = 28.0
+theme = ExtResource( 3 )
+text = "Close"
+
+[node name="DebugLabel" type="Label" parent="CanvasLayer"]
+visible = false
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -283.0
+margin_right = 126.0
+margin_bottom = -134.0
+grow_vertical = 0
+rect_scale = Vector2( 1.5, 1.5 )
+custom_colors/font_color = Color( 0.878431, 0.160784, 0.160784, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SavePanel" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -375.0
+margin_top = -170.0
+margin_right = 375.0
+margin_bottom = 170.0
+rect_min_size = Vector2( 750, 340 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/SavePanel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 743.0
+margin_bottom = 333.0
+
+[node name="SaveChordTitleLabel" type="Label" parent="CanvasLayer/SavePanel/VBoxContainer"]
+margin_right = 736.0
+margin_bottom = 22.0
+theme = ExtResource( 3 )
+text = "Save Chord"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/SavePanel/VBoxContainer"]
+margin_top = 26.0
+margin_right = 736.0
+margin_bottom = 30.0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/SavePanel/VBoxContainer"]
+margin_top = 34.0
+margin_right = 736.0
+margin_bottom = 64.0
+
+[node name="ChordNameHeadingVBoxContainer" type="VBoxContainer" parent="CanvasLayer/SavePanel/VBoxContainer/HBoxContainer3"]
+margin_right = 325.0
+margin_bottom = 30.0
+
+[node name="ChordNameHeadingButton" type="Button" parent="CanvasLayer/SavePanel/VBoxContainer/HBoxContainer3/ChordNameHeadingVBoxContainer"]
+margin_right = 325.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 325, 0 )
+theme = ExtResource( 4 )
+toggle_mode = true
+pressed = true
+text = "Name"
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/SavePanel/VBoxContainer/HBoxContainer3/ChordNameHeadingVBoxContainer"]
+margin_top = 26.0
+margin_right = 325.0
+margin_bottom = 30.0
+
+[node name="LastModifiedHeadingVBoxContainer" type="VBoxContainer" parent="CanvasLayer/SavePanel/VBoxContainer/HBoxContainer3"]
+margin_left = 329.0
+margin_right = 432.0
+margin_bottom = 30.0
+
+[node name="LastModifiedHeadingButton" type="Button" parent="CanvasLayer/SavePanel/VBoxContainer/HBoxContainer3/LastModifiedHeadingVBoxContainer"]
+margin_right = 103.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 103, 0 )
+theme = ExtResource( 4 )
+toggle_mode = true
+text = "Last modified"
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/SavePanel/VBoxContainer/HBoxContainer3/LastModifiedHeadingVBoxContainer"]
+margin_top = 26.0
+margin_right = 103.0
+margin_bottom = 30.0
+
+[node name="PitchClassesHeadingVBoxContainer" type="VBoxContainer" parent="CanvasLayer/SavePanel/VBoxContainer/HBoxContainer3"]
+margin_left = 436.0
+margin_right = 736.0
+margin_bottom = 30.0
+
+[node name="PitchClassesHeadingButton" type="Button" parent="CanvasLayer/SavePanel/VBoxContainer/HBoxContainer3/PitchClassesHeadingVBoxContainer"]
+margin_right = 300.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 300, 0 )
+theme = ExtResource( 4 )
+toggle_mode = true
+text = "Pitch classes"
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/SavePanel/VBoxContainer/HBoxContainer3/PitchClassesHeadingVBoxContainer"]
+margin_top = 26.0
+margin_right = 300.0
+margin_bottom = 30.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/SavePanel/VBoxContainer"]
+margin_top = 68.0
+margin_right = 736.0
+margin_bottom = 262.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+follow_focus = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SavePanel/VBoxContainer/ScrollContainer"]
+margin_right = 8.0
+
+[node name="NameVBoxContainer" type="VBoxContainer" parent="CanvasLayer/SavePanel/VBoxContainer/ScrollContainer/HBoxContainer"]
+
+[node name="NameLabel0" type="Label" parent="CanvasLayer/SavePanel/VBoxContainer/ScrollContainer/HBoxContainer/NameVBoxContainer"]
+visible = false
+margin_right = 325.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 325, 0 )
+theme = ExtResource( 4 )
+text = "C Harmonic Series"
+clip_text = true
+
+[node name="LastModifiedVBoxContainer" type="VBoxContainer" parent="CanvasLayer/SavePanel/VBoxContainer/ScrollContainer/HBoxContainer"]
+margin_left = 4.0
+margin_right = 4.0
+
+[node name="LastModifiedLabel0" type="Label" parent="CanvasLayer/SavePanel/VBoxContainer/ScrollContainer/HBoxContainer/LastModifiedVBoxContainer"]
+visible = false
+margin_right = 103.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 103, 0 )
+theme = ExtResource( 4 )
+text = "11-14-2022"
+
+[node name="PitchClassesVBoxContainer" type="VBoxContainer" parent="CanvasLayer/SavePanel/VBoxContainer/ScrollContainer/HBoxContainer"]
+margin_left = 8.0
+margin_right = 8.0
+
+[node name="PitchClassesLabel0" type="Label" parent="CanvasLayer/SavePanel/VBoxContainer/ScrollContainer/HBoxContainer/PitchClassesVBoxContainer"]
+visible = false
+margin_right = 300.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 300, 0 )
+theme = ExtResource( 4 )
+text = "0, 12, 23, 33, 42, 50, 58, 65"
+clip_text = true
+
+[node name="HSeparator2" type="HSeparator" parent="CanvasLayer/SavePanel/VBoxContainer"]
+margin_top = 266.0
+margin_right = 736.0
+margin_bottom = 270.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/SavePanel/VBoxContainer"]
+margin_top = 274.0
+margin_right = 736.0
+margin_bottom = 300.0
+
+[node name="Label" type="Label" parent="CanvasLayer/SavePanel/VBoxContainer/HBoxContainer2"]
+margin_top = 5.0
+margin_right = 84.0
+margin_bottom = 21.0
+theme = ExtResource( 4 )
+text = "Chord name: "
+
+[node name="SaveChordNameLineEdit" type="LineEdit" parent="CanvasLayer/SavePanel/VBoxContainer/HBoxContainer2"]
+margin_left = 88.0
+margin_right = 736.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SavePanel/VBoxContainer"]
+margin_top = 304.0
+margin_right = 736.0
+margin_bottom = 326.0
+alignment = 2
+
+[node name="CancelSaveButton" type="Button" parent="CanvasLayer/SavePanel/VBoxContainer/HBoxContainer"]
+margin_left = 637.0
+margin_right = 691.0
+margin_bottom = 22.0
+theme = ExtResource( 4 )
+text = "Cancel"
+
+[node name="SaveButton" type="Button" parent="CanvasLayer/SavePanel/VBoxContainer/HBoxContainer"]
+margin_left = 695.0
+margin_right = 736.0
+margin_bottom = 22.0
+text = "Save"
+
+[node name="OpenPanel" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -375.0
+margin_top = -170.0
+margin_right = 375.0
+margin_bottom = 170.0
+rect_min_size = Vector2( 750, 340 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/OpenPanel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 743.0
+margin_bottom = 333.0
+
+[node name="OpenChordTitleLabel" type="Label" parent="CanvasLayer/OpenPanel/VBoxContainer"]
+margin_right = 736.0
+margin_bottom = 22.0
+theme = ExtResource( 3 )
+text = "Open Chord"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/OpenPanel/VBoxContainer"]
+margin_top = 26.0
+margin_right = 736.0
+margin_bottom = 30.0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/OpenPanel/VBoxContainer"]
+margin_top = 34.0
+margin_right = 736.0
+margin_bottom = 64.0
+
+[node name="ChordNameHeadingVBoxContainer" type="VBoxContainer" parent="CanvasLayer/OpenPanel/VBoxContainer/HBoxContainer3"]
+margin_right = 325.0
+margin_bottom = 30.0
+
+[node name="ChordNameHeadingButton" type="Button" parent="CanvasLayer/OpenPanel/VBoxContainer/HBoxContainer3/ChordNameHeadingVBoxContainer"]
+margin_right = 325.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 325, 0 )
+theme = ExtResource( 4 )
+toggle_mode = true
+pressed = true
+text = "Name"
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/OpenPanel/VBoxContainer/HBoxContainer3/ChordNameHeadingVBoxContainer"]
+margin_top = 26.0
+margin_right = 325.0
+margin_bottom = 30.0
+
+[node name="LastModifiedHeadingVBoxContainer" type="VBoxContainer" parent="CanvasLayer/OpenPanel/VBoxContainer/HBoxContainer3"]
+margin_left = 329.0
+margin_right = 432.0
+margin_bottom = 30.0
+
+[node name="LastModifiedHeadingButton" type="Button" parent="CanvasLayer/OpenPanel/VBoxContainer/HBoxContainer3/LastModifiedHeadingVBoxContainer"]
+margin_right = 103.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 103, 0 )
+theme = ExtResource( 4 )
+toggle_mode = true
+text = "Last modified"
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/OpenPanel/VBoxContainer/HBoxContainer3/LastModifiedHeadingVBoxContainer"]
+margin_top = 26.0
+margin_right = 103.0
+margin_bottom = 30.0
+
+[node name="PitchClassesHeadingVBoxContainer" type="VBoxContainer" parent="CanvasLayer/OpenPanel/VBoxContainer/HBoxContainer3"]
+margin_left = 436.0
+margin_right = 736.0
+margin_bottom = 30.0
+
+[node name="PitchClassesHeadingButton" type="Button" parent="CanvasLayer/OpenPanel/VBoxContainer/HBoxContainer3/PitchClassesHeadingVBoxContainer"]
+margin_right = 300.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 300, 0 )
+theme = ExtResource( 4 )
+toggle_mode = true
+text = "Pitch classes"
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/OpenPanel/VBoxContainer/HBoxContainer3/PitchClassesHeadingVBoxContainer"]
+margin_top = 26.0
+margin_right = 300.0
+margin_bottom = 30.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/OpenPanel/VBoxContainer"]
+margin_top = 68.0
+margin_right = 736.0
+margin_bottom = 262.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+follow_focus = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/OpenPanel/VBoxContainer/ScrollContainer"]
+margin_right = 8.0
+
+[node name="NameVBoxContainer" type="VBoxContainer" parent="CanvasLayer/OpenPanel/VBoxContainer/ScrollContainer/HBoxContainer"]
+
+[node name="NameLabel0" type="Label" parent="CanvasLayer/OpenPanel/VBoxContainer/ScrollContainer/HBoxContainer/NameVBoxContainer"]
+visible = false
+margin_right = 325.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 325, 0 )
+mouse_filter = 1
+theme = ExtResource( 4 )
+text = "C Harmonic Series"
+clip_text = true
+
+[node name="LastModifiedVBoxContainer" type="VBoxContainer" parent="CanvasLayer/OpenPanel/VBoxContainer/ScrollContainer/HBoxContainer"]
+margin_left = 4.0
+margin_right = 4.0
+
+[node name="LastModifiedLabel0" type="Label" parent="CanvasLayer/OpenPanel/VBoxContainer/ScrollContainer/HBoxContainer/LastModifiedVBoxContainer"]
+visible = false
+margin_right = 103.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 103, 0 )
+mouse_filter = 1
+theme = ExtResource( 4 )
+text = "11-14-2022"
+
+[node name="PitchClassesVBoxContainer" type="VBoxContainer" parent="CanvasLayer/OpenPanel/VBoxContainer/ScrollContainer/HBoxContainer"]
+margin_left = 8.0
+margin_right = 8.0
+
+[node name="PitchClassesLabel0" type="Label" parent="CanvasLayer/OpenPanel/VBoxContainer/ScrollContainer/HBoxContainer/PitchClassesVBoxContainer"]
+visible = false
+margin_right = 300.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 300, 0 )
+mouse_filter = 1
+theme = ExtResource( 4 )
+text = "0, 12, 23, 33, 42, 50, 58, 65"
+clip_text = true
+
+[node name="HSeparator2" type="HSeparator" parent="CanvasLayer/OpenPanel/VBoxContainer"]
+margin_top = 266.0
+margin_right = 736.0
+margin_bottom = 270.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/OpenPanel/VBoxContainer"]
+margin_top = 274.0
+margin_right = 736.0
+margin_bottom = 300.0
+
+[node name="Label" type="Label" parent="CanvasLayer/OpenPanel/VBoxContainer/HBoxContainer2"]
+margin_top = 5.0
+margin_right = 84.0
+margin_bottom = 21.0
+theme = ExtResource( 4 )
+text = "Chord name: "
+
+[node name="OpenChordNameLineEdit" type="LineEdit" parent="CanvasLayer/OpenPanel/VBoxContainer/HBoxContainer2"]
+margin_left = 88.0
+margin_right = 736.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/OpenPanel/VBoxContainer"]
+margin_top = 304.0
+margin_right = 736.0
+margin_bottom = 326.0
+alignment = 2
+
+[node name="CancelOpenButton" type="Button" parent="CanvasLayer/OpenPanel/VBoxContainer/HBoxContainer"]
+margin_left = 631.0
+margin_right = 685.0
+margin_bottom = 22.0
+theme = ExtResource( 4 )
+text = "Cancel"
+
+[node name="OpenButton" type="Button" parent="CanvasLayer/OpenPanel/VBoxContainer/HBoxContainer"]
+margin_left = 689.0
+margin_right = 736.0
+margin_bottom = 22.0
+text = "Open"
+
+[node name="ConfirmPanel" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -163.0
+margin_top = -51.0
+margin_right = 163.0
+margin_bottom = 51.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ConfirmPanel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 319.0
+margin_bottom = 95.0
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/ConfirmPanel/VBoxContainer"]
+margin_right = 312.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 312, 0 )
+size_flags_horizontal = 3
+
+[node name="ConfirmLabel" type="Label" parent="CanvasLayer/ConfirmPanel/VBoxContainer/CenterContainer"]
+margin_left = 56.0
+margin_right = 256.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+text = "A file with this name already exists. Do you wish to overwrite this file?"
+autowrap = true
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/ConfirmPanel/VBoxContainer"]
+margin_top = 58.0
+margin_right = 312.0
+margin_bottom = 62.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ConfirmPanel/VBoxContainer"]
+margin_top = 66.0
+margin_right = 312.0
+margin_bottom = 88.0
+alignment = 2
+
+[node name="NoButton" type="Button" parent="CanvasLayer/ConfirmPanel/VBoxContainer/HBoxContainer"]
+margin_left = 179.0
+margin_right = 233.0
+margin_bottom = 22.0
+theme = ExtResource( 4 )
+text = "Cancel"
+
+[node name="YesButton" type="Button" parent="CanvasLayer/ConfirmPanel/VBoxContainer/HBoxContainer"]
+margin_left = 237.0
+margin_right = 312.0
+margin_bottom = 22.0
+theme = ExtResource( 4 )
+text = "Overwrite"
+
+[node name="ErrorPanel" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -163.0
+margin_top = -51.0
+margin_right = 163.0
+margin_bottom = 32.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ErrorPanel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 319.0
+margin_bottom = 76.0
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/ErrorPanel/VBoxContainer"]
+margin_right = 312.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 312, 0 )
+size_flags_horizontal = 3
+
+[node name="ErrorLabel" type="Label" parent="CanvasLayer/ErrorPanel/VBoxContainer/CenterContainer"]
+margin_left = 56.0
+margin_right = 256.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+text = "Error: This file couldn't be loaded properly."
+autowrap = true
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/ErrorPanel/VBoxContainer"]
+margin_top = 39.0
+margin_right = 312.0
+margin_bottom = 43.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ErrorPanel/VBoxContainer"]
+margin_top = 47.0
+margin_right = 312.0
+margin_bottom = 69.0
+alignment = 2
+
+[node name="OkayButton" type="Button" parent="CanvasLayer/ErrorPanel/VBoxContainer/HBoxContainer"]
+margin_left = 265.0
+margin_right = 312.0
+margin_bottom = 22.0
+theme = ExtResource( 4 )
+text = "Close"
+
+[node name="NotifyPanel" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -309.0
+margin_top = -99.0
+margin_bottom = -39.0
+rect_min_size = Vector2( 309, 60 )
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/NotifyPanel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 302.0
+margin_bottom = 53.0
+mouse_filter = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/NotifyPanel/CenterContainer"]
+margin_left = 7.0
+margin_top = 15.0
+margin_right = 287.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 280, 16 )
+mouse_filter = 1
+theme = ExtResource( 4 )
+text = "Chord cannot have more than 32 pitches!"
+autowrap = true
+
+[node name="Timer" type="Timer" parent="CanvasLayer/NotifyPanel"]
+wait_time = 3.0
+one_shot = true
+
+[node name="TransformPanel" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -137.0
+margin_top = -14.0
+margin_right = 337.0
+margin_bottom = 343.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TransformPanel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 467.0
+margin_bottom = 350.0
+
+[node name="Label" type="Label" parent="CanvasLayer/TransformPanel/VBoxContainer"]
+margin_right = 460.0
+margin_bottom = 19.0
+theme = ExtResource( 6 )
+text = "Transform"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/TransformPanel/VBoxContainer"]
+margin_top = 23.0
+margin_right = 460.0
+margin_bottom = 27.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TransformPanel/VBoxContainer"]
+margin_top = 31.0
+margin_right = 460.0
+margin_bottom = 53.0
+theme = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="CanvasLayer/TransformPanel/VBoxContainer/HBoxContainer"]
+margin_top = 3.0
+margin_right = 112.0
+margin_bottom = 19.0
+text = "Transformation: "
+
+[node name="TransformationOptionButton" type="OptionButton" parent="CanvasLayer/TransformPanel/VBoxContainer/HBoxContainer"]
+margin_left = 116.0
+margin_right = 460.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+text = "Transpose"
+items = [ "Transpose", null, false, 0, null, "Invert", null, false, 1, null, "Randomize", null, false, 2, null ]
+selected = 0
+
+[node name="HSeparator2" type="HSeparator" parent="CanvasLayer/TransformPanel/VBoxContainer"]
+margin_top = 57.0
+margin_right = 460.0
+margin_bottom = 61.0
+
+[node name="InvertAtHBoxContainer" type="HBoxContainer" parent="CanvasLayer/TransformPanel/VBoxContainer"]
+visible = false
+margin_top = 95.0
+margin_right = 460.0
+margin_bottom = 121.0
+theme = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="CanvasLayer/TransformPanel/VBoxContainer/InvertAtHBoxContainer"]
+margin_top = 5.0
+margin_right = 77.0
+margin_bottom = 21.0
+text = "Invert at: "
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TransformPanel/VBoxContainer/InvertAtHBoxContainer"]
+margin_left = 81.0
+margin_right = 460.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="InvertAtOptionButton" type="OptionButton" parent="CanvasLayer/TransformPanel/VBoxContainer/InvertAtHBoxContainer/HBoxContainer"]
+margin_left = 245.0
+margin_right = 379.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 134, 26 )
+text = "1 pitch"
+items = [ "1 pitch", null, false, 0, null, "2 pitches", null, false, 1, null, "1 pitch class", null, false, 2, null, "2 pitch classes", null, false, 3, null ]
+selected = 0
+
+[node name="TranspositionIndexHBoxContainer" type="HBoxContainer" parent="CanvasLayer/TransformPanel/VBoxContainer"]
+visible = false
+margin_top = 65.0
+margin_right = 460.0
+margin_bottom = 91.0
+theme = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="CanvasLayer/TransformPanel/VBoxContainer/TranspositionIndexHBoxContainer"]
+margin_top = 5.0
+margin_right = 140.0
+margin_bottom = 21.0
+text = "Operation Index:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TransformPanel/VBoxContainer/TranspositionIndexHBoxContainer"]
+margin_left = 144.0
+margin_right = 460.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="TranspositionIndexLineEdit" type="LineEdit" parent="CanvasLayer/TransformPanel/VBoxContainer/TranspositionIndexHBoxContainer/HBoxContainer"]
+margin_left = 222.0
+margin_right = 316.0
+margin_bottom = 26.0
+text = "T0I"
+
+[node name="TransposeIntervalHBoxContainer" type="HBoxContainer" parent="CanvasLayer/TransformPanel/VBoxContainer"]
+visible = false
+margin_top = 65.0
+margin_right = 460.0
+margin_bottom = 91.0
+theme = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="CanvasLayer/TransformPanel/VBoxContainer/TransposeIntervalHBoxContainer"]
+margin_top = 5.0
+margin_right = 70.0
+margin_bottom = 21.0
+text = "Interval: "
+
+[node name="TransposeIntervalLineEdit" parent="CanvasLayer/TransformPanel/VBoxContainer/TransposeIntervalHBoxContainer" instance=ExtResource( 8 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 74.0
+margin_right = 168.0
+margin_bottom = 26.0
+
+[node name="InvertAxisHBoxContainer" type="HBoxContainer" parent="CanvasLayer/TransformPanel/VBoxContainer"]
+visible = false
+margin_top = 65.0
+margin_right = 460.0
+margin_bottom = 91.0
+theme = ExtResource( 4 )
+
+[node name="AxisLabel" type="Label" parent="CanvasLayer/TransformPanel/VBoxContainer/InvertAxisHBoxContainer"]
+margin_top = 5.0
+margin_right = 42.0
+margin_bottom = 21.0
+text = "Axis: "
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TransformPanel/VBoxContainer/InvertAxisHBoxContainer"]
+margin_left = 46.0
+margin_right = 460.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="InvertAxisAPitchLineEdit" type="LineEdit" parent="CanvasLayer/TransformPanel/VBoxContainer/InvertAxisHBoxContainer/HBoxContainer"]
+margin_left = 320.0
+margin_right = 414.0
+margin_bottom = 26.0
+text = "270"
+script = ExtResource( 9 )
+
+[node name="InvertAxisBPitchLineEdit" type="LineEdit" parent="CanvasLayer/TransformPanel/VBoxContainer/InvertAxisHBoxContainer/HBoxContainer"]
+visible = false
+margin_left = 136.0
+margin_right = 230.0
+margin_bottom = 26.0
+text = "270"
+script = ExtResource( 9 )
+
+[node name="InvertMapHBoxContainer" type="HBoxContainer" parent="CanvasLayer/TransformPanel/VBoxContainer"]
+visible = false
+margin_top = 155.0
+margin_right = 460.0
+margin_bottom = 181.0
+theme = ExtResource( 4 )
+
+[node name="InvertMapLabel" type="Label" parent="CanvasLayer/TransformPanel/VBoxContainer/InvertMapHBoxContainer"]
+margin_top = 5.0
+margin_right = 77.0
+margin_bottom = 21.0
+text = "Map pitch: "
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TransformPanel/VBoxContainer/InvertMapHBoxContainer"]
+margin_left = 81.0
+margin_right = 460.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="InvertMapAPitchLineEdit" type="LineEdit" parent="CanvasLayer/TransformPanel/VBoxContainer/InvertMapHBoxContainer/HBoxContainer"]
+margin_left = 155.0
+margin_right = 249.0
+margin_bottom = 26.0
+text = "270"
+script = ExtResource( 9 )
+
+[node name="Label2" type="Label" parent="CanvasLayer/TransformPanel/VBoxContainer/InvertMapHBoxContainer/HBoxContainer"]
+margin_left = 253.0
+margin_top = 5.0
+margin_right = 281.0
+margin_bottom = 21.0
+text = " to "
+
+[node name="InvertMapBPitchLineEdit" type="LineEdit" parent="CanvasLayer/TransformPanel/VBoxContainer/InvertMapHBoxContainer/HBoxContainer"]
+margin_left = 285.0
+margin_right = 379.0
+margin_bottom = 26.0
+text = "270"
+script = ExtResource( 9 )
+
+[node name="RandomTypeHBoxContainer" type="HBoxContainer" parent="CanvasLayer/TransformPanel/VBoxContainer"]
+margin_top = 65.0
+margin_right = 460.0
+margin_bottom = 87.0
+theme = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="CanvasLayer/TransformPanel/VBoxContainer/RandomTypeHBoxContainer"]
+margin_top = 3.0
+margin_right = 140.0
+margin_bottom = 19.0
+text = "Randomization type: "
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TransformPanel/VBoxContainer/RandomTypeHBoxContainer"]
+margin_left = 144.0
+margin_right = 460.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="RandomTypeOptionButton" type="OptionButton" parent="CanvasLayer/TransformPanel/VBoxContainer/RandomTypeHBoxContainer/HBoxContainer"]
+margin_left = 154.0
+margin_right = 316.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 162, 22 )
+text = "Random pitch"
+items = [ "Random pitch", null, false, 0, null, "Random pitch class", null, false, 1, null, "Normal distribution", null, false, 2, null ]
+selected = 0
+
+[node name="RandomNumberOfElementsHBoxContainer" type="HBoxContainer" parent="CanvasLayer/TransformPanel/VBoxContainer"]
+margin_top = 91.0
+margin_right = 460.0
+margin_bottom = 117.0
+theme = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="CanvasLayer/TransformPanel/VBoxContainer/RandomNumberOfElementsHBoxContainer"]
+margin_top = 5.0
+margin_right = 133.0
+margin_bottom = 21.0
+text = "Number of pitches: "
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TransformPanel/VBoxContainer/RandomNumberOfElementsHBoxContainer"]
+margin_left = 137.0
+margin_right = 460.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="RandomNumberOfPitchesLineEdit" type="LineEdit" parent="CanvasLayer/TransformPanel/VBoxContainer/RandomNumberOfElementsHBoxContainer/HBoxContainer"]
+margin_left = 229.0
+margin_right = 323.0
+margin_bottom = 26.0
+
+[node name="RandomRangeLowHBoxContainer" type="HBoxContainer" parent="CanvasLayer/TransformPanel/VBoxContainer"]
+margin_top = 121.0
+margin_right = 460.0
+margin_bottom = 147.0
+theme = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="CanvasLayer/TransformPanel/VBoxContainer/RandomRangeLowHBoxContainer"]
+margin_top = 5.0
+margin_right = 77.0
+margin_bottom = 21.0
+text = "Low limit: "
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TransformPanel/VBoxContainer/RandomRangeLowHBoxContainer"]
+margin_left = 81.0
+margin_right = 460.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="RangeLowPitchLineEdit" type="LineEdit" parent="CanvasLayer/TransformPanel/VBoxContainer/RandomRangeLowHBoxContainer/HBoxContainer"]
+margin_left = 129.0
+margin_right = 223.0
+margin_bottom = 26.0
+script = ExtResource( 9 )
+
+[node name="InstrumentRangeLowButton" type="Button" parent="CanvasLayer/TransformPanel/VBoxContainer/RandomRangeLowHBoxContainer/HBoxContainer"]
+margin_left = 227.0
+margin_right = 379.0
+margin_bottom = 26.0
+text = "use instrument range"
+
+[node name="RandomRangeHighHBoxContainer" type="HBoxContainer" parent="CanvasLayer/TransformPanel/VBoxContainer"]
+margin_top = 151.0
+margin_right = 460.0
+margin_bottom = 177.0
+theme = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="CanvasLayer/TransformPanel/VBoxContainer/RandomRangeHighHBoxContainer"]
+margin_top = 5.0
+margin_right = 84.0
+margin_bottom = 21.0
+text = "High limit: "
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TransformPanel/VBoxContainer/RandomRangeHighHBoxContainer"]
+margin_left = 88.0
+margin_right = 460.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="RangeHighPitchLineEdit" type="LineEdit" parent="CanvasLayer/TransformPanel/VBoxContainer/RandomRangeHighHBoxContainer/HBoxContainer"]
+margin_left = 122.0
+margin_right = 216.0
+margin_bottom = 26.0
+script = ExtResource( 9 )
+
+[node name="InstrumentRangeHighButton" type="Button" parent="CanvasLayer/TransformPanel/VBoxContainer/RandomRangeHighHBoxContainer/HBoxContainer"]
+margin_left = 220.0
+margin_right = 372.0
+margin_bottom = 26.0
+text = "use instrument range"
+
+[node name="NormalDistributionMeanHBoxContainer" type="HBoxContainer" parent="CanvasLayer/TransformPanel/VBoxContainer"]
+margin_top = 181.0
+margin_right = 460.0
+margin_bottom = 207.0
+theme = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="CanvasLayer/TransformPanel/VBoxContainer/NormalDistributionMeanHBoxContainer"]
+margin_top = 5.0
+margin_right = 42.0
+margin_bottom = 21.0
+text = "Mean: "
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TransformPanel/VBoxContainer/NormalDistributionMeanHBoxContainer"]
+margin_left = 46.0
+margin_right = 460.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="NDMeanPitchLineEdit" type="LineEdit" parent="CanvasLayer/TransformPanel/VBoxContainer/NormalDistributionMeanHBoxContainer/HBoxContainer"]
+margin_left = 320.0
+margin_right = 414.0
+margin_bottom = 26.0
+script = ExtResource( 9 )
+
+[node name="NormalDistributionDeviationHBoxContainer" type="HBoxContainer" parent="CanvasLayer/TransformPanel/VBoxContainer"]
+margin_top = 211.0
+margin_right = 460.0
+margin_bottom = 237.0
+theme = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="CanvasLayer/TransformPanel/VBoxContainer/NormalDistributionDeviationHBoxContainer"]
+margin_top = 5.0
+margin_right = 77.0
+margin_bottom = 21.0
+text = "Deviation: "
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TransformPanel/VBoxContainer/NormalDistributionDeviationHBoxContainer"]
+margin_left = 81.0
+margin_right = 460.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="NDDeviationLineEdit" type="LineEdit" parent="CanvasLayer/TransformPanel/VBoxContainer/NormalDistributionDeviationHBoxContainer/HBoxContainer"]
+margin_left = 285.0
+margin_right = 379.0
+margin_bottom = 26.0
+
+[node name="VoiceLeadHBoxContainer" type="HBoxContainer" parent="CanvasLayer/TransformPanel/VBoxContainer"]
+visible = false
+margin_top = 185.0
+margin_right = 460.0
+margin_bottom = 209.0
+theme = ExtResource( 4 )
+
+[node name="VoiceLeadCheckBox" type="CheckBox" parent="CanvasLayer/TransformPanel/VBoxContainer/VoiceLeadHBoxContainer"]
+margin_right = 189.0
+margin_bottom = 24.0
+text = "Voice lead to new chord"
+
+[node name="OutOfRangeBehaviorHBoxContainer" type="HBoxContainer" parent="CanvasLayer/TransformPanel/VBoxContainer"]
+margin_top = 241.0
+margin_right = 460.0
+margin_bottom = 263.0
+theme = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="CanvasLayer/TransformPanel/VBoxContainer/OutOfRangeBehaviorHBoxContainer"]
+margin_top = 3.0
+margin_right = 161.0
+margin_bottom = 19.0
+text = "Out of range behavior: "
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TransformPanel/VBoxContainer/OutOfRangeBehaviorHBoxContainer"]
+margin_left = 165.0
+margin_right = 460.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="OutOfRangeBehaviorOptionButton" type="OptionButton" parent="CanvasLayer/TransformPanel/VBoxContainer/OutOfRangeBehaviorHBoxContainer/HBoxContainer"]
+margin_left = 133.0
+margin_right = 295.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 162, 0 )
+hint_tooltip = "Transpose: Out-of-range notes are transposed by octaves until they within range.
+Remove: Out-of-range notes are removed from the chord.
+Clamp: Out-of-range notes are clamped within range.
+Reroll: Out-of-range notes are rerolled until they are within range."
+text = "Transpose"
+items = [ "Transpose", null, false, 0, null, "Remove", null, false, 1, null, "Clamp", null, false, 2, null, "Reroll", null, true, 3, null ]
+selected = 0
+
+[node name="RerollHBoxContainer" type="HBoxContainer" parent="CanvasLayer/TransformPanel/VBoxContainer"]
+visible = false
+margin_top = 267.0
+margin_right = 460.0
+margin_bottom = 289.0
+theme = ExtResource( 4 )
+alignment = 2
+
+[node name="RerollButton" type="Button" parent="CanvasLayer/TransformPanel/VBoxContainer/RerollHBoxContainer"]
+margin_left = 385.0
+margin_right = 460.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 75, 0 )
+text = "Reroll"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TransformPanel/VBoxContainer"]
+margin_top = 267.0
+margin_right = 460.0
+margin_bottom = 343.0
+size_flags_vertical = 3
+alignment = 2
+
+[node name="HSeparator3" type="HSeparator" parent="CanvasLayer/TransformPanel/VBoxContainer/VBoxContainer"]
+margin_right = 460.0
+margin_bottom = 4.0
+
+[node name="ResultHBoxContainer" type="HBoxContainer" parent="CanvasLayer/TransformPanel/VBoxContainer/VBoxContainer"]
+margin_top = 8.0
+margin_right = 460.0
+margin_bottom = 48.0
+theme = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="CanvasLayer/TransformPanel/VBoxContainer/VBoxContainer/ResultHBoxContainer"]
+margin_top = 12.0
+margin_right = 56.0
+margin_bottom = 28.0
+text = "Result: "
+
+[node name="ResultTextEdit" type="TextEdit" parent="CanvasLayer/TransformPanel/VBoxContainer/VBoxContainer/ResultHBoxContainer"]
+margin_left = 60.0
+margin_right = 460.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+rect_clip_content = true
+size_flags_horizontal = 3
+readonly = true
+wrap_enabled = true
+caret_blink = true
+
+[node name="ConfirmCancelHBoxContainer" type="HBoxContainer" parent="CanvasLayer/TransformPanel/VBoxContainer/VBoxContainer"]
+margin_top = 52.0
+margin_right = 460.0
+margin_bottom = 76.0
+theme = ExtResource( 4 )
+alignment = 2
+
+[node name="CloseOnTransformHBoxContainer" type="HBoxContainer" parent="CanvasLayer/TransformPanel/VBoxContainer/VBoxContainer/ConfirmCancelHBoxContainer"]
+margin_right = 330.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+
+[node name="CloseUponTransformCheckBox" type="CheckBox" parent="CanvasLayer/TransformPanel/VBoxContainer/VBoxContainer/ConfirmCancelHBoxContainer/CloseOnTransformHBoxContainer"]
+margin_right = 238.0
+margin_bottom = 24.0
+pressed = true
+text = "Close window upon transforming"
+
+[node name="CancelButton" type="Button" parent="CanvasLayer/TransformPanel/VBoxContainer/VBoxContainer/ConfirmCancelHBoxContainer"]
+margin_left = 334.0
+margin_right = 381.0
+margin_bottom = 24.0
+text = "Close"
+
+[node name="ConfirmButton" type="Button" parent="CanvasLayer/TransformPanel/VBoxContainer/VBoxContainer/ConfirmCancelHBoxContainer"]
+margin_left = 385.0
+margin_right = 460.0
+margin_bottom = 24.0
+text = "Transform"
+
+[node name="DebugCamLabel" type="Label" parent="CanvasLayer"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -309.0
+margin_right = 389.0
+margin_bottom = -114.0
+theme = ExtResource( 7 )
+custom_colors/font_color = Color( 0.929412, 0.219608, 0.0117647, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="tween_completed" from="TriGlowTween" to="." method="_on_TriGlowTween_tween_completed"]
+[connection signal="toggled" from="CanvasLayer/TopMenu/PanelContainer/HBoxContainer/SaveChordButton" to="." method="_on_SaveChordButton_toggled"]
+[connection signal="toggled" from="CanvasLayer/TopMenu/PanelContainer/HBoxContainer/OpenChordButton" to="." method="_on_OpenChordButton_toggled"]
+[connection signal="toggled" from="CanvasLayer/TopMenu/PanelContainer/HBoxContainer/NotationButton" to="." method="_on_NotationButton_toggled"]
+[connection signal="toggled" from="CanvasLayer/TopMenu/PanelContainer/HBoxContainer/TransformButton" to="." method="_on_TransformButton_toggled"]
+[connection signal="toggled" from="CanvasLayer/TopMenu/PanelContainer/HBoxContainer/AnalysisButton" to="." method="_on_AnalysisButton_toggled"]
+[connection signal="toggled" from="CanvasLayer/TopMenu/PanelContainer/HBoxContainer/SettingsButton" to="." method="_on_SettingsButton_toggled"]
+[connection signal="toggled" from="CanvasLayer/TopMenu/PanelContainer/HBoxContainer/HelpButton" to="." method="_on_HelpButton_toggled"]
+[connection signal="gui_input" from="CanvasLayer/GrandStaffPanelContainer" to="." method="_on_GrandStaffPanelContainer_gui_input"]
+[connection signal="gui_input" from="CanvasLayer/SettingsPanelContainer" to="." method="_on_SettingsPanelContainer_gui_input"]
+[connection signal="pressed" from="CanvasLayer/SettingsPanelContainer/VBoxContainer/SharpsCheckButton" to="." method="_on_SharpsCheckButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/SettingsPanelContainer/VBoxContainer/MiddleC4CheckButton" to="." method="_on_MiddleC4CheckButton_pressed"]
+[connection signal="item_selected" from="CanvasLayer/SettingsPanelContainer/VBoxContainer/HBoxContainer4/HalfStepNameOptionButton" to="." method="_on_HalfStepNameOptionButton_item_selected"]
+[connection signal="text_entered" from="CanvasLayer/SettingsPanelContainer/VBoxContainer/HBoxContainer9/PlaybackCentRandomizationLineEdit" to="." method="_on_PlaybackCentRandomizationLineEdit_text_entered"]
+[connection signal="text_entered" from="CanvasLayer/SettingsPanelContainer/VBoxContainer/HBoxContainer2/GSScaleLineEdit" to="." method="_on_GSScaleLineEdit_text_entered"]
+[connection signal="item_selected" from="CanvasLayer/SettingsPanelContainer/VBoxContainer/HBoxContainer8/DateFormatOptionButton" to="." method="_on_DateFormatOptionButton_item_selected"]
+[connection signal="text_entered" from="CanvasLayer/SettingsPanelContainer/VBoxContainer/HBoxContainer10/HBoxContainer/CameraSpeedLineEdit" to="." method="_on_CameraSpeedLineEdit_text_entered"]
+[connection signal="item_selected" from="CanvasLayer/SettingsPanelContainer/VBoxContainer/HBoxContainer5/IntervalsToListOptionButton" to="." method="_on_IntervalsToListOptionButton_item_selected"]
+[connection signal="item_selected" from="CanvasLayer/SettingsPanelContainer/VBoxContainer/HBoxContainer3/IvlDistanceFormatOptionButton" to="." method="_on_IvlDistanceFormatOptionButton_item_selected"]
+[connection signal="value_changed" from="CanvasLayer/SettingsPanelContainer/VBoxContainer/HBoxContainer6/MaxDenominatorSpinBox" to="." method="_on_MaxDenominatorSpinBox_value_changed"]
+[connection signal="pressed" from="CanvasLayer/SettingsPanelContainer/VBoxContainer/HBoxContainer/CloseButton" to="." method="_on_Settings_CloseButton_pressed"]
+[connection signal="gui_input" from="CanvasLayer/ChordAnalysisPanelContainer" to="." method="_on_ChordAnalysisPanelContainer_gui_input"]
+[connection signal="gui_input" from="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/PitchesHBoxContainer/PitchesTextEdit" to="." method="_on_PitchesTextEdit_gui_input"]
+[connection signal="gui_input" from="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/NoteNumbersHBoxContainer/NoteNumbersTextEdit" to="." method="_on_NoteNumbersTextEdit_gui_input"]
+[connection signal="gui_input" from="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/FrequenciesHBoxContainer/FrequenciesTextEdit" to="." method="_on_FrequenciesTextEdit_gui_input"]
+[connection signal="gui_input" from="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/IvlScrollContainer" to="." method="_on_IvlScrollContainer_gui_input"]
+[connection signal="pressed" from="CanvasLayer/ChordAnalysisPanelContainer/VBoxContainer/HBoxContainer/ChordAnalysisCloseButton" to="." method="_on_ChordAnalysisCloseButton_pressed"]
+[connection signal="gui_input" from="CanvasLayer/HelpPanelContainer" to="." method="_on_HelpPanelContainer_gui_input"]
+[connection signal="pressed" from="CanvasLayer/HelpPanelContainer/VBoxContainer/HBoxContainer2/HelpCloseButton" to="." method="_on_HelpCloseButton_pressed"]
+[connection signal="toggled" from="CanvasLayer/SavePanel/VBoxContainer/HBoxContainer3/ChordNameHeadingVBoxContainer/ChordNameHeadingButton" to="." method="_on_ChordNameHeadingButton_toggled"]
+[connection signal="toggled" from="CanvasLayer/SavePanel/VBoxContainer/HBoxContainer3/LastModifiedHeadingVBoxContainer/LastModifiedHeadingButton" to="." method="_on_LastModifiedHeadingButton_toggled"]
+[connection signal="toggled" from="CanvasLayer/SavePanel/VBoxContainer/HBoxContainer3/PitchClassesHeadingVBoxContainer/PitchClassesHeadingButton" to="." method="_on_SavePitchClassesHeadingButton_toggled"]
+[connection signal="text_changed" from="CanvasLayer/SavePanel/VBoxContainer/HBoxContainer2/SaveChordNameLineEdit" to="." method="_on_SaveChordNameLineEdit_text_changed"]
+[connection signal="text_entered" from="CanvasLayer/SavePanel/VBoxContainer/HBoxContainer2/SaveChordNameLineEdit" to="." method="_on_SaveChordNameLineEdit_text_entered"]
+[connection signal="pressed" from="CanvasLayer/SavePanel/VBoxContainer/HBoxContainer/CancelSaveButton" to="." method="_on_CancelSaveButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/SavePanel/VBoxContainer/HBoxContainer/SaveButton" to="." method="_on_SaveButton_pressed"]
+[connection signal="toggled" from="CanvasLayer/OpenPanel/VBoxContainer/HBoxContainer3/ChordNameHeadingVBoxContainer/ChordNameHeadingButton" to="." method="_on_ChordNameHeadingButton_toggled"]
+[connection signal="toggled" from="CanvasLayer/OpenPanel/VBoxContainer/HBoxContainer3/LastModifiedHeadingVBoxContainer/LastModifiedHeadingButton" to="." method="_on_LastModifiedHeadingButton_toggled"]
+[connection signal="toggled" from="CanvasLayer/OpenPanel/VBoxContainer/HBoxContainer3/PitchClassesHeadingVBoxContainer/PitchClassesHeadingButton" to="." method="_on_SavePitchClassesHeadingButton_toggled"]
+[connection signal="gui_input" from="CanvasLayer/OpenPanel/VBoxContainer/ScrollContainer/HBoxContainer/NameVBoxContainer/NameLabel0" to="." method="_on_op_NameLabel_gui_input" binds= [ 0 ]]
+[connection signal="mouse_entered" from="CanvasLayer/OpenPanel/VBoxContainer/ScrollContainer/HBoxContainer/NameVBoxContainer/NameLabel0" to="." method="_on_op_NameLabel_mouse_entered" binds= [ 0 ]]
+[connection signal="mouse_exited" from="CanvasLayer/OpenPanel/VBoxContainer/ScrollContainer/HBoxContainer/NameVBoxContainer/NameLabel0" to="." method="_on_op_NameLabel_mouse_exited" binds= [ 0 ]]
+[connection signal="gui_input" from="CanvasLayer/OpenPanel/VBoxContainer/ScrollContainer/HBoxContainer/LastModifiedVBoxContainer/LastModifiedLabel0" to="." method="_on_op_LastModifiedLabel_gui_input" binds= [ 0 ]]
+[connection signal="mouse_entered" from="CanvasLayer/OpenPanel/VBoxContainer/ScrollContainer/HBoxContainer/LastModifiedVBoxContainer/LastModifiedLabel0" to="." method="_on_op_LastModifiedLabel_mouse_entered" binds= [ 0 ]]
+[connection signal="mouse_exited" from="CanvasLayer/OpenPanel/VBoxContainer/ScrollContainer/HBoxContainer/LastModifiedVBoxContainer/LastModifiedLabel0" to="." method="_on_op_LastModifiedLabel_mouse_exited" binds= [ 0 ]]
+[connection signal="gui_input" from="CanvasLayer/OpenPanel/VBoxContainer/ScrollContainer/HBoxContainer/PitchClassesVBoxContainer/PitchClassesLabel0" to="." method="_on_op_PitchClassesLabel_gui_input" binds= [ 0 ]]
+[connection signal="mouse_entered" from="CanvasLayer/OpenPanel/VBoxContainer/ScrollContainer/HBoxContainer/PitchClassesVBoxContainer/PitchClassesLabel0" to="." method="_on_op_PitchClassesLabel_mouse_entered" binds= [ 0 ]]
+[connection signal="mouse_exited" from="CanvasLayer/OpenPanel/VBoxContainer/ScrollContainer/HBoxContainer/PitchClassesVBoxContainer/PitchClassesLabel0" to="." method="_on_op_PitchClassesLabel_mouse_exited" binds= [ 0 ]]
+[connection signal="text_changed" from="CanvasLayer/OpenPanel/VBoxContainer/HBoxContainer2/OpenChordNameLineEdit" to="." method="_on_OpenChordNameLineEdit_text_changed"]
+[connection signal="text_entered" from="CanvasLayer/OpenPanel/VBoxContainer/HBoxContainer2/OpenChordNameLineEdit" to="." method="_on_OpenChordNameLineEdit_text_entered"]
+[connection signal="pressed" from="CanvasLayer/OpenPanel/VBoxContainer/HBoxContainer/CancelOpenButton" to="." method="_on_CancelOpenButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/OpenPanel/VBoxContainer/HBoxContainer/OpenButton" to="." method="_on_OpenButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/ConfirmPanel/VBoxContainer/HBoxContainer/NoButton" to="." method="_on_NoButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/ConfirmPanel/VBoxContainer/HBoxContainer/YesButton" to="." method="_on_YesButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/ErrorPanel/VBoxContainer/HBoxContainer/OkayButton" to="." method="_on_ErrorOkayButton_pressed"]
+[connection signal="gui_input" from="CanvasLayer/NotifyPanel" to="." method="_on_NotifyPanel_gui_input"]
+[connection signal="timeout" from="CanvasLayer/NotifyPanel/Timer" to="." method="_on_notify_panel_Timer_timeout"]
+[connection signal="gui_input" from="CanvasLayer/TransformPanel" to="." method="_on_TransformPanel_gui_input"]
+[connection signal="item_selected" from="CanvasLayer/TransformPanel/VBoxContainer/HBoxContainer/TransformationOptionButton" to="." method="_on_TransformationOptionButton_item_selected"]
+[connection signal="item_selected" from="CanvasLayer/TransformPanel/VBoxContainer/InvertAtHBoxContainer/HBoxContainer/InvertAtOptionButton" to="." method="_on_InvertAtOptionButton_item_selected"]
+[connection signal="text_entered" from="CanvasLayer/TransformPanel/VBoxContainer/TranspositionIndexHBoxContainer/HBoxContainer/TranspositionIndexLineEdit" to="." method="_on_TranspositionIndexLineEdit_text_entered"]
+[connection signal="text_changed_2" from="CanvasLayer/TransformPanel/VBoxContainer/TransposeIntervalHBoxContainer/TransposeIntervalLineEdit" to="." method="_on_TransposeIntervalLineEdit_text_changed_2"]
+[connection signal="format_changed" from="CanvasLayer/TransformPanel/VBoxContainer/InvertAxisHBoxContainer/HBoxContainer/InvertAxisAPitchLineEdit" to="." method="_on_InvertAxisAPitchLineEdit_format_changed"]
+[connection signal="pitch_changed" from="CanvasLayer/TransformPanel/VBoxContainer/InvertAxisHBoxContainer/HBoxContainer/InvertAxisAPitchLineEdit" to="." method="_on_InvertAxisAPitchLineEdit_pitch_changed"]
+[connection signal="format_changed" from="CanvasLayer/TransformPanel/VBoxContainer/InvertAxisHBoxContainer/HBoxContainer/InvertAxisBPitchLineEdit" to="." method="_on_InvertAxisBPitchLineEdit_format_changed"]
+[connection signal="pitch_changed" from="CanvasLayer/TransformPanel/VBoxContainer/InvertAxisHBoxContainer/HBoxContainer/InvertAxisBPitchLineEdit" to="." method="_on_InvertAxisBPitchLineEdit_pitch_changed"]
+[connection signal="format_changed" from="CanvasLayer/TransformPanel/VBoxContainer/InvertMapHBoxContainer/HBoxContainer/InvertMapAPitchLineEdit" to="." method="_on_InvertMapAPitchLineEdit_format_changed"]
+[connection signal="pitch_changed" from="CanvasLayer/TransformPanel/VBoxContainer/InvertMapHBoxContainer/HBoxContainer/InvertMapAPitchLineEdit" to="." method="_on_InvertMapAPitchLineEdit_pitch_changed"]
+[connection signal="format_changed" from="CanvasLayer/TransformPanel/VBoxContainer/InvertMapHBoxContainer/HBoxContainer/InvertMapBPitchLineEdit" to="." method="_on_InvertMapBPitchLineEdit_format_changed"]
+[connection signal="pitch_changed" from="CanvasLayer/TransformPanel/VBoxContainer/InvertMapHBoxContainer/HBoxContainer/InvertMapBPitchLineEdit" to="." method="_on_InvertMapBPitchLineEdit_pitch_changed"]
+[connection signal="item_selected" from="CanvasLayer/TransformPanel/VBoxContainer/RandomTypeHBoxContainer/HBoxContainer/RandomTypeOptionButton" to="." method="_on_RandomTypeOptionButton_item_selected"]
+[connection signal="text_entered" from="CanvasLayer/TransformPanel/VBoxContainer/RandomNumberOfElementsHBoxContainer/HBoxContainer/RandomNumberOfPitchesLineEdit" to="." method="_on_RandomNumberOfPitchesLineEdit_text_entered"]
+[connection signal="format_changed" from="CanvasLayer/TransformPanel/VBoxContainer/RandomRangeLowHBoxContainer/HBoxContainer/RangeLowPitchLineEdit" to="." method="_on_RangeLowPitchLineEdit_format_changed"]
+[connection signal="text_entered_2" from="CanvasLayer/TransformPanel/VBoxContainer/RandomRangeLowHBoxContainer/HBoxContainer/RangeLowPitchLineEdit" to="." method="_on_RangeLowPitchLineEdit_text_entered_2"]
+[connection signal="pressed" from="CanvasLayer/TransformPanel/VBoxContainer/RandomRangeLowHBoxContainer/HBoxContainer/InstrumentRangeLowButton" to="." method="_on_InstrumentRangeLowButton_pressed"]
+[connection signal="format_changed" from="CanvasLayer/TransformPanel/VBoxContainer/RandomRangeHighHBoxContainer/HBoxContainer/RangeHighPitchLineEdit" to="." method="_on_RangeHighPitchLineEdit_format_changed"]
+[connection signal="text_entered_2" from="CanvasLayer/TransformPanel/VBoxContainer/RandomRangeHighHBoxContainer/HBoxContainer/RangeHighPitchLineEdit" to="." method="_on_RangeHighPitchLineEdit_text_entered_2"]
+[connection signal="pressed" from="CanvasLayer/TransformPanel/VBoxContainer/RandomRangeHighHBoxContainer/HBoxContainer/InstrumentRangeHighButton" to="." method="_on_InstrumentRangeHighButton_pressed"]
+[connection signal="format_changed" from="CanvasLayer/TransformPanel/VBoxContainer/NormalDistributionMeanHBoxContainer/HBoxContainer/NDMeanPitchLineEdit" to="." method="_on_NDMeanPitchLineEdit_format_changed"]
+[connection signal="text_entered_2" from="CanvasLayer/TransformPanel/VBoxContainer/NormalDistributionMeanHBoxContainer/HBoxContainer/NDMeanPitchLineEdit" to="." method="_on_NDMeanPitchLineEdit_text_entered_2"]
+[connection signal="text_entered" from="CanvasLayer/TransformPanel/VBoxContainer/NormalDistributionDeviationHBoxContainer/HBoxContainer/NDDeviationLineEdit" to="." method="_on_NDDeviationLineEdit_text_entered"]
+[connection signal="toggled" from="CanvasLayer/TransformPanel/VBoxContainer/VoiceLeadHBoxContainer/VoiceLeadCheckBox" to="." method="_on_VoiceLeadCheckBox_toggled"]
+[connection signal="item_selected" from="CanvasLayer/TransformPanel/VBoxContainer/OutOfRangeBehaviorHBoxContainer/HBoxContainer/OutOfRangeBehaviorOptionButton" to="." method="_on_OutOfRangeBehaviorOptionButton_item_selected"]
+[connection signal="pressed" from="CanvasLayer/TransformPanel/VBoxContainer/RerollHBoxContainer/RerollButton" to="." method="_on_RerollButton_pressed"]
+[connection signal="toggled" from="CanvasLayer/TransformPanel/VBoxContainer/VBoxContainer/ConfirmCancelHBoxContainer/CloseOnTransformHBoxContainer/CloseUponTransformCheckBox" to="." method="_on_CloseUponTransformCheckBox_toggled"]
+[connection signal="pressed" from="CanvasLayer/TransformPanel/VBoxContainer/VBoxContainer/ConfirmCancelHBoxContainer/CancelButton" to="." method="_on_TransformCancelButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/TransformPanel/VBoxContainer/VBoxContainer/ConfirmCancelHBoxContainer/ConfirmButton" to="." method="_on_TransformConfirmButton_pressed"]
