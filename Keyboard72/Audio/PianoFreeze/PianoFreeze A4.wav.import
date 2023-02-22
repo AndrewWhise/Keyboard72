@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/PianoFreeze A4.wav-e8ef3d0df7d94ea6977a00575fb8847c.sample"
+
+[deps]
+
+source_file="res://Audio/PianoFreeze/PianoFreeze A4.wav"
+dest_files=[ "res://.import/PianoFreeze A4.wav-e8ef3d0df7d94ea6977a00575fb8847c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=true
+edit/loop=true
+compress/mode=0
