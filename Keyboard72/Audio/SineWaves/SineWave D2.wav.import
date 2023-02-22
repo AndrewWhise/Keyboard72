@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/SineWave D2.wav-247843d77d804f62fa42c5ef1c02d87a.sample"
+
+[deps]
+
+source_file="res://Audio/SineWaves/SineWave D2.wav"
+dest_files=[ "res://.import/SineWave D2.wav-247843d77d804f62fa42c5ef1c02d87a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=true
+edit/loop=true
+compress/mode=0
