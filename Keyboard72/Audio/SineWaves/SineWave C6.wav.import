@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/SineWave C6.wav-e0125e973803981fec0f99f2fbf3092a.sample"
+
+[deps]
+
+source_file="res://Audio/SineWaves/SineWave C6.wav"
+dest_files=[ "res://.import/SineWave C6.wav-e0125e973803981fec0f99f2fbf3092a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=true
+edit/loop=true
+compress/mode=0

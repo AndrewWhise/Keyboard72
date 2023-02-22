@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/SineWave A5.wav-2c491af394ef4c01da7bf27c64579d0c.sample"
+
+[deps]
+
+source_file="res://Audio/SineWaves/SineWave A5.wav"
+dest_files=[ "res://.import/SineWave A5.wav-2c491af394ef4c01da7bf27c64579d0c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=true
+edit/loop=true
+compress/mode=0

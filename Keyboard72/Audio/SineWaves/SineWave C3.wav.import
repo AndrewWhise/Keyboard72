@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/SineWave C3.wav-d9cb18388e768eb4aca30a3d3d797a66.sample"
+
+[deps]
+
+source_file="res://Audio/SineWaves/SineWave C3.wav"
+dest_files=[ "res://.import/SineWave C3.wav-d9cb18388e768eb4aca30a3d3d797a66.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=true
+edit/loop=true
+compress/mode=0
